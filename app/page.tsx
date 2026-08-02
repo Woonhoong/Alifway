@@ -149,15 +149,30 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="manifesto" id="manifesto" aria-labelledby="manifesto-heading">
-          <p className="section-kicker">Our point of view / 03</p>
+        <section className="manifesto" id="manifesto" data-manifesto aria-labelledby="manifesto-heading">
+          <div className="manifesto-atmosphere" aria-hidden="true">
+            <i className="manifesto-glow manifesto-glow-a" />
+            <i className="manifesto-glow manifesto-glow-b" />
+            <span>Idea · Image · Sound · Motion ·</span>
+          </div>
+
+          <div className="manifesto-intro">
+            <p className="section-kicker">Our point of view / 03</p>
+            <p className="manifesto-lede" data-reveal>
+              From the first frame to the final cut, we create visual work that feels
+              considered, human and unmistakably yours.
+            </p>
+          </div>
           <h2 id="manifesto-heading" className="sr-only">Our manifesto</h2>
           <div className="manifesto-lines">
             <p data-reveal>Every story begins with a point of view.</p>
             <p data-reveal>Craft gives every idea its rhythm.</p>
             <p data-reveal>Emotion is what makes it stay.</p>
           </div>
-          <p className="manifesto-note">Alifway Media — vision shaped through image, sound and motion.</p>
+          <div className="manifesto-footer">
+            <p className="manifesto-note">Alifway Media — vision shaped through image, sound and motion.</p>
+            <p className="manifesto-promise">Stories made to move people—and brands.</p>
+          </div>
         </section>
 
         <section className="scrub-chapter services-chapter" data-sequence="clipB" aria-label="Alifway Media services">

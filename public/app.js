@@ -189,6 +189,29 @@
     document.querySelectorAll("[data-reveal]").forEach((line) => observer.observe(line));
   }
 
+  function setupManifestoAtmosphere() {
+    const manifesto = document.querySelector("[data-manifesto]");
+    if (!manifesto || reducedMotion) return;
+
+    const update = () => {
+      const rect = manifesto.getBoundingClientRect();
+      const travel = Math.max(1, window.innerHeight + rect.height);
+      const progress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / travel));
+      const drift = progress - 0.5;
+      manifesto.style.setProperty("--manifesto-progress", progress.toFixed(4));
+      manifesto.style.setProperty("--manifesto-wash-x", `${(drift * -7).toFixed(2)}vw`);
+      manifesto.style.setProperty("--manifesto-glow-a-x", `${(drift * -11).toFixed(2)}vw`);
+      manifesto.style.setProperty("--manifesto-glow-a-y", `${(drift * 8).toFixed(2)}vh`);
+      manifesto.style.setProperty("--manifesto-glow-b-x", `${(drift * 9).toFixed(2)}vw`);
+      manifesto.style.setProperty("--manifesto-glow-b-y", `${(drift * -6).toFixed(2)}vh`);
+      manifesto.style.setProperty("--manifesto-type-x", `${(drift * -14).toFixed(2)}vw`);
+    };
+
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+  }
+
   function setupMediaJourney() {
     const journey = document.querySelector("[data-media-journey]");
     if (!journey) return;
@@ -296,6 +319,7 @@
     }
 
     setupReveals();
+    setupManifestoAtmosphere();
     setupMediaJourney();
     setupSmoothScroll();
     setupContact();
