@@ -42,21 +42,57 @@ export default function Home() {
       </header>
 
       <main id="top">
-        <section className="scrub-chapter hero-chapter" data-sequence="clipA" aria-label="Alifway Media introduction">
+        <section
+          className="scrub-chapter hero-chapter"
+          data-sequence="hero-camera"
+          data-frame-count="42"
+          data-frame-root="/frames/hero-camera"
+          aria-label="Alifway Media camera-build introduction"
+        >
           <div className="scrub-stage">
             <canvas className="sequence-canvas" aria-hidden="true" />
-            <video className="motion-fallback" muted loop playsInline preload="metadata" aria-hidden="true">
-              <source src="/video/clipA.mp4" type="video/mp4" />
+            <video className="motion-fallback" muted playsInline preload="metadata" aria-hidden="true">
+              <source src="/video/camera-build.mp4" type="video/mp4" />
             </video>
-            <img className="sequence-fallback" src="/assets/alifway_media_dark_purple_monogram_transparent.png" alt="" />
-            <div className="cinema-wash" aria-hidden="true" />
-            <div className="hero-copy">
-              <p className="eyebrow">Vision in motion.</p>
-              <h1>Alifway<br />Media</h1>
-              <div className="hero-foot">
-                <p>Film craft, brand worlds<br />and stories built to move.</p>
-                <span className="scroll-cue"><i /> Scroll to direct</span>
-              </div>
+            <img className="sequence-fallback" src="/frames/hero-camera/frame_0042.jpg" alt="" />
+            <div className="hero-theme-wash" aria-hidden="true" />
+
+            <div className="hero-brand-stamp" aria-hidden="true">
+              <span>Alifway Media</span>
+              <span>Dubai · UAE</span>
+            </div>
+
+            <div className="hero-scroll-copy" aria-hidden="false">
+              <article className="hero-story-panel hero-story-panel-left" data-hero-panel data-phase-start="-0.065" data-phase-end="0.31">
+                <p>01 / First light</p>
+                <h1>Vision begins<br />at the source.</h1>
+                <span>Every memorable story starts with the right point of view.</span>
+              </article>
+
+              <article className="hero-story-panel hero-story-panel-right" data-hero-panel data-phase-start="0.34" data-phase-end="0.65">
+                <p>02 / Built in motion</p>
+                <h2>Every piece<br />serves the story.</h2>
+                <span>Film craft, visual rhythm and brand thinking—assembled frame by frame.</span>
+              </article>
+
+              <article className="hero-story-panel hero-story-panel-left hero-story-panel-final" data-hero-panel data-phase-start="0.68" data-phase-end="0.985">
+                <p>03 / Ready to create</p>
+                <h2>Ideas that move<br />brands forward.</h2>
+                <span>Campaigns, films and digital experiences made for ambitious brands.</span>
+              </article>
+            </div>
+
+            <img
+              className="hero-lens-mark"
+              data-hero-mark
+              src="/assets/alifway_media_dark_purple_monogram_transparent.png"
+              alt=""
+            />
+
+            <div className="hero-scroll-meter" aria-hidden="true">
+              <span>Scroll to assemble</span>
+              <i><b /></i>
+              <span>42 frames</span>
             </div>
             <div className="chapter-index" aria-hidden="true"><span>01</span><span>Opening frame</span></div>
           </div>
