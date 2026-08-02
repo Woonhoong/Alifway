@@ -123,26 +123,41 @@ export default function Home() {
             </div>
 
             <ol className="media-journey-steps">
-              <li className="is-active" data-media-step><span>01 / Capture</span><strong>Camera</strong><p>Find the frame and hold the feeling.</p></li>
-              <li data-media-step><span>02 / Direct</span><strong>Cinema</strong><p>Turn the idea into movement and light.</p></li>
-              <li data-media-step><span>03 / Shape</span><strong>Edit</strong><p>Build rhythm, tension and continuity.</p></li>
-              <li data-media-step><span>04 / Finish</span><strong>Sound</strong><p>Give every image texture and atmosphere.</p></li>
-              <li data-media-step><span>05 / Release</span><strong>Play</strong><p>Deliver a story made to be remembered.</p></li>
+              <li className="is-active" data-media-step>
+                <span>01 / Capture</span><strong>Camera</strong>
+                <p>We shape the brief, find the point of view and capture every frame with intention.<small>Creative direction · Production · Cinematography</small></p>
+              </li>
+              <li data-media-step>
+                <span>02 / Direct</span><strong>Cinema</strong>
+                <p>Light, performance and movement come together to turn an idea into a living scene.<small>Direction · Lighting · On-set craft</small></p>
+              </li>
+              <li data-media-step>
+                <span>03 / Shape</span><strong>Edit</strong>
+                <p>We refine the strongest moments into a clear rhythm built around the brand story.<small>Editing · Colour · Motion design</small></p>
+              </li>
+              <li data-media-step>
+                <span>04 / Finish</span><strong>Sound</strong>
+                <p>Music, voice and detail give the picture its atmosphere, energy and emotional weight.<small>Sound design · Mix · Voice</small></p>
+              </li>
+              <li data-media-step>
+                <span>05 / Release</span><strong>Play</strong>
+                <p>Every film is finished for the right screen, format and audience—ready to make an impact.<small>Campaign delivery · Social cuts · Masters</small></p>
+              </li>
             </ol>
 
             <div className="media-journey-index" aria-hidden="true"><span id="media-step-number">01</span><span>Alifway production system</span></div>
           </div>
         </section>
 
-        <section className="manifesto" aria-labelledby="manifesto-heading">
+        <section className="manifesto" id="manifesto" aria-labelledby="manifesto-heading">
           <p className="section-kicker">Our point of view / 03</p>
           <h2 id="manifesto-heading" className="sr-only">Our manifesto</h2>
           <div className="manifesto-lines">
-            <p data-reveal>PLACEHOLDER — YOUR FIRST MANIFESTO LINE.</p>
-            <p data-reveal>PLACEHOLDER — YOUR SECOND MANIFESTO LINE.</p>
-            <p data-reveal>PLACEHOLDER — YOUR CLOSING THOUGHT.</p>
+            <p data-reveal>Every story begins with a point of view.</p>
+            <p data-reveal>Craft gives every idea its rhythm.</p>
+            <p data-reveal>Emotion is what makes it stay.</p>
           </div>
-          <p className="manifesto-note">Words to be shaped by Alifway Media.</p>
+          <p className="manifesto-note">Alifway Media — vision shaped through image, sound and motion.</p>
         </section>
 
         <section className="scrub-chapter services-chapter" data-sequence="clipB" aria-label="Alifway Media services">
