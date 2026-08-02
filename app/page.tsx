@@ -31,9 +31,12 @@ export default function Home() {
             height="405"
           />
         </a>
-        <a className="nav-work" href="#selected-work">
-          <span>Portfolio</span><span aria-hidden="true">↘</span>
-        </a>
+        <div className="nav-links">
+          <a href="/projects">Projects</a>
+          <a className="nav-work" href="#selected-work">
+            <span>Portfolio</span><span aria-hidden="true">↘</span>
+          </a>
+        </div>
       </header>
 
       <main id="top">
@@ -96,18 +99,18 @@ export default function Home() {
           </div>
 
           <div className="project-list" role="list">
-            <article className="project-row" role="listitem">
+            <a className="project-row" role="listitem" href="/projects">
               <span className="project-number">01</span><h3>Automotive / Motion Study</h3><span className="project-year">Film · 2026</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </article>
-            <article className="project-row" role="listitem">
+            </a>
+            <a className="project-row" role="listitem" href="/projects">
               <span className="project-number">02</span><h3>Hospitality / A Sense of Place</h3><span className="project-year">Campaign · 2026</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </article>
-            <article className="project-row" role="listitem">
+            </a>
+            <a className="project-row" role="listitem" href="/projects">
               <span className="project-number">03</span><h3>Fashion / After Light</h3><span className="project-year">Editorial · 2025</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </article>
-            <article className="project-row" role="listitem">
+            </a>
+            <a className="project-row" role="listitem" href="/projects">
               <span className="project-number">04</span><h3>Architecture / Human Scale</h3><span className="project-year">Narrative · 2025</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </article>
+            </a>
           </div>
 
           <div className="social-portals">
