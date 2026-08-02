@@ -45,12 +45,18 @@ const categories = ["All Work", "Food", "Automotive", "Fashion & Beauty", "Brand
 
 export default function ProjectsPage() {
   const [active, setActive] = useState<(typeof categories)[number]>("All Work");
+  const visibleCategories = useMemo(
+    () => categories.filter(
+      (category) => category === "All Work" || projects.some((project) => project.category === category),
+    ),
+    [],
+  );
   const filtered = useMemo(() => active === "All Work" ? projects : projects.filter((project) => project.category === active), [active]);
 
   return (
     <>
       <header className="site-nav projects-nav" aria-label="Primary navigation">
-        <a className="brand-link" href="/" aria-label="Alifway Media home"><img src="/assets/alifway-media-header-clear.png" alt="Alifway Media" width="2185" height="405" /></a>
+        <a className="brand-link" href="/" aria-label="Alifway Media home"><img src="/assets/Alifway Media - Logo new (3).png" alt="Alifway Media" width="2185" height="405" /></a>
         <div className="nav-links"><a className="is-current" href="/projects">Projects</a><a className="nav-work" href="/">Home <span aria-hidden="true">↖</span></a></div>
       </header>
       <main className="projects-page" id="top">
@@ -62,7 +68,7 @@ export default function ProjectsPage() {
 
         <nav className="project-filters" aria-label="Filter projects by category">
           <a href="/">Home</a>
-          {categories.map((category) => (
+          {visibleCategories.map((category) => (
             <button key={category} type="button" className={active === category ? "is-active" : ""} onClick={() => setActive(category)} aria-pressed={active === category}>
               {category}<span>{category === "All Work" ? projects.length : projects.filter((project) => project.category === category).length}</span>
             </button>
@@ -82,7 +88,7 @@ export default function ProjectsPage() {
         </section>
         <section className="projects-outro"><p className="section-kicker">More work / 27+</p><a href="https://www.behance.net/alifwaymedia" target="_blank" rel="noreferrer">Explore the<br />Archive <span>↗</span></a></section>
       </main>
-      <footer className="site-footer projects-footer"><img src="/assets/alifway_media_white_monogram_transparent.png" alt="" /><p>Alifway Media © 2026</p><a href="#top">Back to top ↑</a></footer>
+      <footer className="site-footer projects-footer"><img src="/assets/alifway_media_dark_purple_monogram_transparent.png" alt="" /><p>Alifway Media © 2026</p><a href="#top">Back to top ↑</a></footer>
     </>
   );
 }

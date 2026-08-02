@@ -9,7 +9,7 @@ export default function Home() {
         <div className="loader-core">
           <img
             className="loader-mark"
-            src="/assets/alifway_media_white_monogram_transparent.png"
+            src="/assets/alifway_media_dark_purple_monogram_transparent.png"
             alt="Alifway Media"
           />
           <div className="loader-meta">
@@ -25,7 +25,7 @@ export default function Home() {
       <header className="site-nav" aria-label="Primary navigation">
         <a className="brand-link" href="#top" aria-label="Alifway Media, back to top">
           <img
-            src="/assets/alifway-media-header-clear.png"
+            src="/assets/Alifway Media - Logo new (3).png"
             alt="Alifway Media"
             width="2185"
             height="405"
@@ -138,7 +138,7 @@ export default function Home() {
       </main>
 
       <footer className="site-footer">
-        <img src="/assets/alifway_media_white_monogram_transparent.png" alt="" />
+        <img src="/assets/alifway_media_dark_purple_monogram_transparent.png" alt="" />
         <p>Alifway Media © 2026</p>
         <a href="#top">Back to top ↑</a>
       </footer>

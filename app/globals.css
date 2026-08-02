@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --ink: #16142b;
-  --bone: #dcdce1;
+  --ink: #fbfafd;
+  --bone: #171426;
+  --surface: #f4f1f7;
   --purple: #8b53ac;
-  --line: rgba(220, 220, 225, 0.18);
-  --muted: rgba(220, 220, 225, 0.58);
+  --line: rgba(22, 20, 43, 0.14);
+  --muted: rgba(22, 20, 43, 0.58);
   --display: "Syne", sans-serif;
   --sans: "Space Grotesk", sans-serif;
 }
@@ -17,7 +18,7 @@ html { background: var(--ink); scroll-behavior: auto; }
 body {
   margin: 0;
   overflow-x: hidden;
-  background: var(--ink);
+  background: #fff;
   color: var(--bone);
   font-family: var(--sans);
   -webkit-font-smoothing: antialiased;
@@ -82,7 +83,7 @@ button, input { font: inherit; }
   letter-spacing: .16em;
   text-transform: uppercase;
 }
-.loader-track { height: 1px; background: rgba(220,220,225,.14); overflow: hidden; }
+.loader-track { height: 1px; background: rgba(22,20,43,.14); overflow: hidden; }
 .loader-track span { display: block; width: 100%; height: 100%; background: var(--purple); transform: scaleX(0); transform-origin: left; }
 
 .site-nav {
@@ -94,7 +95,7 @@ button, input { font: inherit; }
   justify-content: space-between;
   height: 108px;
   padding: 0 clamp(1.3rem, 4vw, 4.5rem);
-  background: linear-gradient(180deg, rgba(13, 12, 25, .72) 0%, rgba(13, 12, 25, .2) 58%, transparent 100%);
+  background: linear-gradient(180deg, rgba(255,255,255,.98) 0%, rgba(251,250,253,.82) 58%, rgba(251,250,253,0) 100%);
   pointer-events: none;
 }
 .site-nav a { pointer-events: auto; }
@@ -126,21 +127,21 @@ button, input { font: inherit; }
 .scrub-chapter { position: relative; height: 430vh; }
 .scrub-stage { position: sticky; top: 0; width: 100%; height: 100vh; overflow: hidden; isolation: isolate; }
 .sequence-canvas, .motion-fallback, .sequence-fallback, .cinema-wash { position: absolute; inset: 0; width: 100%; height: 100%; }
-.sequence-canvas { z-index: -4; display: block; background: #0d0c19; }
-.motion-fallback { z-index: -4; display: none; object-fit: cover; background: #0d0c19; }
+.sequence-canvas { z-index: -4; display: block; background: var(--surface); }
+.motion-fallback { z-index: -4; display: none; object-fit: cover; background: var(--surface); }
 .sequence-fallback { z-index: -5; object-fit: contain; object-position: 78% 50%; padding: 18vh 10vw 18vh 52vw; opacity: .22; filter: saturate(.72); }
 .cinema-wash {
   z-index: -2;
   background:
-    linear-gradient(90deg, rgba(10,9,23,.73) 0%, rgba(10,9,23,.18) 51%, rgba(10,9,23,.55) 100%),
-    linear-gradient(0deg, rgba(22,20,43,.9) 0%, transparent 40%, rgba(22,20,43,.4) 100%);
+    linear-gradient(90deg, rgba(255,255,255,.9) 0%, rgba(255,255,255,.28) 51%, rgba(255,255,255,.62) 100%),
+    linear-gradient(0deg, rgba(251,250,253,.96) 0%, rgba(251,250,253,.08) 42%, rgba(251,250,253,.5) 100%);
 }
 .cinema-wash::after {
   content: "";
   position: absolute;
   inset: 0;
   opacity: .28;
-  background: radial-gradient(circle at 30% 24%, rgba(139,83,172,.18), transparent 26%), radial-gradient(circle at 74% 68%, rgba(220,220,225,.07), transparent 20%);
+  background: radial-gradient(circle at 30% 24%, rgba(139,83,172,.12), transparent 26%), radial-gradient(circle at 74% 68%, rgba(22,20,43,.04), transparent 20%);
   pointer-events: none;
 }
 
@@ -218,7 +219,7 @@ button, input { font: inherit; }
   margin: 0;
   padding: .55em 0;
   border-bottom: 1px solid var(--line);
-  color: rgba(220,220,225,.18);
+  color: rgba(22,20,43,.16);
   font-family: var(--display);
   font-size: clamp(2.2rem, 5vw, 5.7rem);
   line-height: .95;
@@ -277,7 +278,7 @@ button, input { font: inherit; }
   border-bottom: 1px solid var(--line);
   transition: color .25s ease, padding .4s cubic-bezier(.22,1,.36,1);
 }
-.project-row:hover { color: #fff; padding: 0 1.4rem; }
+.project-row:hover { color: var(--purple); padding: 0 1.4rem; }
 .project-number, .project-year { color: var(--muted); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
 .project-row h3 { margin: 0; font-family: var(--display); font-size: clamp(1.35rem, 2.7vw, 3rem); font-weight: 500; letter-spacing: -.035em; }
 .project-arrow { justify-self: end; color: var(--purple); font-size: 1.2rem; }
@@ -290,7 +291,9 @@ button, input { font: inherit; }
 .social-portals span { color: var(--muted); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
 .social-portals strong { position: absolute; left: 2.5rem; bottom: 2.2rem; font-family: var(--display); font-size: clamp(2.8rem, 5vw, 6rem); font-weight: 500; line-height: .83; letter-spacing: -.06em; text-transform: uppercase; }
 .social-portals i { position: absolute; top: 1.8rem; right: 2.5rem; color: var(--purple); font-style: normal; font-size: 1.6rem; }
-.social-portals a:hover i { color: var(--bone); }
+.social-portals a:hover { color: #fff; }
+.social-portals a:hover span { color: rgba(255,255,255,.72); }
+.social-portals a:hover i { color: #fff; }
 
 .contact { min-height: 100vh; padding: 19vh clamp(1.3rem, 7vw, 8rem) 12vh; display: grid; grid-template-columns: .45fr 1.55fr; gap: 0 5vw; align-items: start; }
 .contact h2 { grid-column: 2; font-size: clamp(5rem, 12vw, 12.5rem); }
@@ -298,7 +301,7 @@ button, input { font: inherit; }
 .contact-form label { display: block; margin-bottom: 1rem; color: var(--muted); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; }
 .email-line { display: flex; align-items: center; border-bottom: 1px solid var(--bone); }
 .email-line input { flex: 1; min-width: 0; padding: 1.4rem 0; border: 0; outline: 0; background: transparent; color: var(--bone); font-size: clamp(1.4rem, 2.8vw, 2.6rem); }
-.email-line input::placeholder { color: rgba(220,220,225,.24); }
+.email-line input::placeholder { color: rgba(22,20,43,.24); }
 .email-line button { width: 62px; height: 62px; border: 0; border-radius: 50%; background: var(--purple); color: #fff; cursor: pointer; font-size: 1.3rem; transition: transform .25s ease, background .25s ease; }
 .email-line button:hover, .email-line button:focus-visible { transform: rotate(45deg); background: #a76bc8; }
 .form-status { min-height: 1.5em; margin: 1rem 0 0; color: var(--muted); font-size: .7rem; }
@@ -309,7 +312,7 @@ button, input { font: inherit; }
 .site-footer a { justify-self: end; }
 
 .projects-page { padding-top: 1px; }
-.projects-nav { background: linear-gradient(180deg, rgba(22,20,43,.96), rgba(22,20,43,.72) 65%, transparent); }
+.projects-nav { background: linear-gradient(180deg, rgba(255,255,255,.99), rgba(251,250,253,.9) 65%, rgba(251,250,253,0)); }
 .projects-hero { min-height: 100vh; padding: 23vh clamp(1.3rem, 7vw, 8rem) 8vh; display: grid; grid-template-columns: .42fr 1.58fr; align-content: center; gap: 2rem 5vw; }
 .projects-hero .section-kicker { grid-column: 1; align-self: start; padding-top: 1rem; }
 .projects-hero h1 { grid-column: 2; margin: 0; font-family: var(--display); font-size: clamp(4.4rem, 11vw, 11.5rem); font-weight: 500; line-height: .8; letter-spacing: -.07em; text-transform: uppercase; }
@@ -325,7 +328,7 @@ button, input { font: inherit; }
   padding: 0 clamp(1.3rem, 4vw, 4.5rem);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  background: rgba(22,20,43,.94);
+  background: rgba(255,255,255,.94);
   backdrop-filter: blur(18px);
   scrollbar-width: none;
 }
@@ -365,7 +368,7 @@ button, input { font: inherit; }
 .video-meta h2 { margin: 0; font-family: var(--display); font-size: clamp(2rem, 4vw, 5rem); font-weight: 500; line-height: .9; letter-spacing: -.055em; text-transform: uppercase; }
 .video-meta p { grid-column: 2; margin: 3rem 0 0; color: var(--muted); font-size: .62rem; letter-spacing: .16em; text-transform: uppercase; }
 .video-meta a { grid-column: 3; grid-row: 2; align-self: end; color: var(--purple); font-size: .65rem; letter-spacing: .14em; text-transform: uppercase; }
-.source-name { grid-column: 1 / -1; margin: -2rem 0 0; color: rgba(220,220,225,.28); font-size: .55rem; letter-spacing: .12em; text-transform: uppercase; }
+.source-name { grid-column: 1 / -1; margin: -2rem 0 0; color: rgba(22,20,43,.28); font-size: .55rem; letter-spacing: .12em; text-transform: uppercase; }
 .projects-outro { min-height: 85vh; padding: 17vh clamp(1.3rem, 7vw, 8rem); display: grid; grid-template-columns: .42fr 1.58fr; gap: 5vw; align-content: center; }
 .projects-outro a { position: relative; grid-column: 2; font-family: var(--display); font-size: clamp(4rem, 10vw, 11rem); font-weight: 500; line-height: .8; letter-spacing: -.07em; text-transform: uppercase; }
 .projects-outro a span { color: var(--purple); font-size: .4em; vertical-align: top; }
