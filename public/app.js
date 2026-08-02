@@ -148,6 +148,46 @@
     document.querySelectorAll("[data-reveal]").forEach((line) => observer.observe(line));
   }
 
+  function setupMediaJourney() {
+    const journey = document.querySelector("[data-media-journey]");
+    if (!journey) return;
+    const glyphs = [...journey.querySelectorAll("[data-media-glyph]")];
+    const steps = [...journey.querySelectorAll("[data-media-step]")];
+    const counter = journey.querySelector("#media-step-number");
+    let target = 0;
+    let current = reducedMotion ? 0 : 0;
+    let activeIndex = -1;
+
+    const updateTarget = () => {
+      if (reducedMotion) return;
+      const rect = journey.getBoundingClientRect();
+      const travel = Math.max(1, journey.offsetHeight - window.innerHeight);
+      target = Math.max(0, Math.min(1, -rect.top / travel));
+    };
+
+    const setActive = (index) => {
+      if (index === activeIndex) return;
+      activeIndex = index;
+      glyphs.forEach((glyph, glyphIndex) => glyph.classList.toggle("is-active", glyphIndex === index));
+      steps.forEach((step, stepIndex) => step.classList.toggle("is-active", stepIndex === index));
+      if (counter) counter.textContent = String(index + 1).padStart(2, "0");
+    };
+
+    const render = () => {
+      current += (target - current) * 0.09;
+      journey.style.setProperty("--media-progress", current.toFixed(4));
+      journey.style.setProperty("--media-x", `${10 + current * 80}%`);
+      setActive(Math.min(glyphs.length - 1, Math.floor(current * glyphs.length)));
+      if (!reducedMotion) requestAnimationFrame(render);
+    };
+
+    updateTarget();
+    setActive(0);
+    render();
+    window.addEventListener("scroll", updateTarget, { passive: true });
+    window.addEventListener("resize", updateTarget, { passive: true });
+  }
+
   function setupSmoothScroll() {
     if (reducedMotion || !("Lenis" in window)) return;
     const lenis = new window.Lenis({ duration: 1.15, smoothWheel: true, wheelMultiplier: 0.92 });
@@ -194,6 +234,7 @@
     }
 
     setupReveals();
+    setupMediaJourney();
     setupSmoothScroll();
     setupContact();
 

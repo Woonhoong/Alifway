@@ -1,5 +1,6 @@
-import Link from "next/link";
+/* eslint-disable @next/next/no-html-link-for-pages -- native anchors avoid a Vinext hydration fault in the cinematic home shell */
 import ClientScripts from "./client-scripts";
+import MediaIcon from "./media-icons";
 
 export default function Home() {
   return (
@@ -33,7 +34,7 @@ export default function Home() {
           />
         </a>
         <div className="nav-links">
-          <Link href="/projects">Projects</Link>
+          <a href="/projects">Projects</a>
           <a className="nav-work" href="#selected-work">
             <span>Portfolio</span><span aria-hidden="true">↘</span>
           </a>
@@ -61,8 +62,38 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="media-journey" id="media-process" data-media-journey aria-labelledby="media-journey-heading">
+          <div className="media-stage">
+            <div className="media-journey-head">
+              <p className="section-kicker">The production line / 02</p>
+              <h2 id="media-journey-heading">Every idea<br />finds its form.</h2>
+            </div>
+
+            <div className="media-motion-rail" aria-hidden="true">
+              <i />
+              <div className="media-marker">
+                <span className="media-glyph is-active" data-media-glyph><MediaIcon name="camera" /></span>
+                <span className="media-glyph" data-media-glyph><MediaIcon name="film" /></span>
+                <span className="media-glyph" data-media-glyph><MediaIcon name="edit" /></span>
+                <span className="media-glyph" data-media-glyph><MediaIcon name="mic" /></span>
+                <span className="media-glyph" data-media-glyph><MediaIcon name="play" /></span>
+              </div>
+            </div>
+
+            <ol className="media-journey-steps">
+              <li className="is-active" data-media-step><span>01 / Capture</span><strong>Camera</strong><p>Find the frame and hold the feeling.</p></li>
+              <li data-media-step><span>02 / Direct</span><strong>Cinema</strong><p>Turn the idea into movement and light.</p></li>
+              <li data-media-step><span>03 / Shape</span><strong>Edit</strong><p>Build rhythm, tension and continuity.</p></li>
+              <li data-media-step><span>04 / Finish</span><strong>Sound</strong><p>Give every image texture and atmosphere.</p></li>
+              <li data-media-step><span>05 / Release</span><strong>Play</strong><p>Deliver a story made to be remembered.</p></li>
+            </ol>
+
+            <div className="media-journey-index" aria-hidden="true"><span id="media-step-number">01</span><span>Alifway production system</span></div>
+          </div>
+        </section>
+
         <section className="manifesto" aria-labelledby="manifesto-heading">
-          <p className="section-kicker">Our point of view / 02</p>
+          <p className="section-kicker">Our point of view / 03</p>
           <h2 id="manifesto-heading" className="sr-only">Our manifesto</h2>
           <div className="manifesto-lines">
             <p data-reveal>PLACEHOLDER — YOUR FIRST MANIFESTO LINE.</p>
@@ -89,29 +120,29 @@ export default function Home() {
               <li><i /><span>02</span><strong>Post-production.</strong></li>
               <li><i /><span>03</span><strong>Brand narratives.</strong></li>
             </ol>
-            <div className="chapter-index" aria-hidden="true"><span>03</span><span>Our practice</span></div>
+            <div className="chapter-index" aria-hidden="true"><span>04</span><span>Our practice</span></div>
           </div>
         </section>
 
         <section className="work-index" id="selected-work" aria-labelledby="work-heading">
           <div className="section-heading" data-motion="rise">
-            <p className="section-kicker">Selected work / 04</p>
+            <p className="section-kicker">Selected work / 05</p>
             <h2 id="work-heading">A living index<br />of moving ideas.</h2>
           </div>
 
           <div className="project-list" role="list">
-            <Link className="project-row" role="listitem" href="/projects" data-motion="rise">
+            <a className="project-row" role="listitem" href="/projects" data-motion="rise">
               <span className="project-number">01</span><h3>Automotive / Motion Study</h3><span className="project-year">Film · 2026</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </Link>
-            <Link className="project-row" role="listitem" href="/projects" data-motion="rise">
+            </a>
+            <a className="project-row" role="listitem" href="/projects" data-motion="rise">
               <span className="project-number">02</span><h3>Hospitality / A Sense of Place</h3><span className="project-year">Campaign · 2026</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </Link>
-            <Link className="project-row" role="listitem" href="/projects" data-motion="rise">
+            </a>
+            <a className="project-row" role="listitem" href="/projects" data-motion="rise">
               <span className="project-number">03</span><h3>Fashion / After Light</h3><span className="project-year">Editorial · 2025</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </Link>
-            <Link className="project-row" role="listitem" href="/projects" data-motion="rise">
+            </a>
+            <a className="project-row" role="listitem" href="/projects" data-motion="rise">
               <span className="project-number">04</span><h3>Architecture / Human Scale</h3><span className="project-year">Narrative · 2025</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </Link>
+            </a>
           </div>
 
           <div className="social-portals" data-motion="clip">
@@ -125,7 +156,7 @@ export default function Home() {
         </section>
 
         <section className="contact" aria-labelledby="contact-heading" data-motion="rise">
-          <p className="section-kicker">The next frame / 05</p>
+          <p className="section-kicker">The next frame / 06</p>
           <h2 id="contact-heading">Start Your<br />Project</h2>
           <form className="contact-form" id="contact-form">
             <label htmlFor="contact-email">Your email address</label>

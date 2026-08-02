@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { useMemo, useRef, useState } from "react";
 import { categories, projects } from "./data";
+import MediaIcon from "../media-icons";
 
 export default function ProjectsPage() {
   const [active, setActive] = useState<(typeof categories)[number]>("All Work");
@@ -24,7 +25,12 @@ export default function ProjectsPage() {
     </header>
     <main className="projects-page" id="top">
       <section className="projects-hero">
-        <div className="hero-orbit" data-parallax="34" aria-hidden="true"><i /><i /><i /></div>
+        <div className="hero-media-cluster" data-parallax="34" aria-hidden="true">
+          <span className="hero-media-main"><MediaIcon name="camera" /></span>
+          <span className="hero-media-float hero-media-film"><MediaIcon name="film" /></span>
+          <span className="hero-media-float hero-media-edit"><MediaIcon name="edit" /></span>
+          <span className="hero-media-float hero-media-play"><MediaIcon name="play" /></span>
+        </div>
         <p className="section-kicker projects-kicker" data-motion="fade">Projects / 01—26</p>
         <h1 aria-label="Stories built to move"><span className="line-mask"><span>Stories built</span></span><span className="line-mask"><span>to move.</span></span></h1>
         <div className="projects-intro" data-motion="rise"><p>A living archive of food, automotive, fashion, branding, events and social-first films.</p><span>Alifway Media · UAE</span></div>
