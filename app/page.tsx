@@ -197,14 +197,62 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="contact" aria-labelledby="contact-heading" data-motion="rise">
+        <section className="contact" id="contact" aria-labelledby="contact-heading" data-motion="rise">
           <p className="section-kicker">The next frame / 06</p>
           <h2 id="contact-heading">Start Your<br />Project</h2>
           <form className="contact-form" id="contact-form">
-            <label htmlFor="contact-email">Your email address</label>
-            <div className="email-line">
-              <input id="contact-email" name="email" type="email" placeholder="name@studio.com" autoComplete="email" required />
-              <button type="submit" aria-label="Continue your project enquiry">↗</button>
+            <div className="brief-grid">
+              <label className="brief-field">
+                <span>Your name *</span>
+                <input name="name" type="text" placeholder="Name" autoComplete="name" required />
+              </label>
+              <label className="brief-field">
+                <span>Email address *</span>
+                <input id="contact-email" name="email" type="email" placeholder="name@company.com" autoComplete="email" required />
+              </label>
+              <label className="brief-field">
+                <span>Company / brand</span>
+                <input name="company" type="text" placeholder="Brand name" autoComplete="organization" />
+              </label>
+              <label className="brief-field">
+                <span>Phone / WhatsApp</span>
+                <input name="phone" type="tel" placeholder="+971" autoComplete="tel" />
+              </label>
+              <label className="brief-field">
+                <span>What do you need? *</span>
+                <select name="service" defaultValue="" required>
+                  <option value="" disabled>Select a service</option>
+                  <option>Brand film</option>
+                  <option>Social content</option>
+                  <option>Product campaign</option>
+                  <option>Event coverage</option>
+                  <option>Post-production</option>
+                  <option>Photography</option>
+                  <option>Something else</option>
+                </select>
+              </label>
+              <label className="brief-field">
+                <span>Estimated budget</span>
+                <select name="budget" defaultValue="Not sure yet">
+                  <option>Not sure yet</option>
+                  <option>Under AED 10,000</option>
+                  <option>AED 10,000–25,000</option>
+                  <option>AED 25,000–50,000</option>
+                  <option>AED 50,000+</option>
+                </select>
+              </label>
+              <label className="brief-field brief-field-wide">
+                <span>When do you need it?</span>
+                <input name="timeline" type="text" placeholder="Target date or timeframe" />
+              </label>
+              <label className="brief-field brief-field-wide brief-message">
+                <span>Tell us about the project *</span>
+                <textarea name="brief" rows={4} placeholder="What are you creating, who is it for, and what should it achieve?" required />
+              </label>
+            </div>
+            <div className="brief-submit">
+              <p>Submitting prepares your brief and opens Alifway Media on Instagram.</p>
+              <button type="submit"><span>Send project brief</span><i aria-hidden="true">↗</i></button>
             </div>
             <p className="form-status" id="form-status" aria-live="polite" />
           </form>

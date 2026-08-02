@@ -258,7 +258,23 @@
     const status = document.querySelector("#form-status");
     form?.addEventListener("submit", (event) => {
       event.preventDefault();
-      status.textContent = "Opening Alifway Media on Instagram to continue your enquiry…";
+      const values = Object.fromEntries(new FormData(form).entries());
+      const brief = [
+        "Hello Alifway Media — I would like to start a project.",
+        `Name: ${values.name || "—"}`,
+        `Email: ${values.email || "—"}`,
+        `Company / brand: ${values.company || "—"}`,
+        `Phone / WhatsApp: ${values.phone || "—"}`,
+        `Service: ${values.service || "—"}`,
+        `Budget: ${values.budget || "—"}`,
+        `Timeline: ${values.timeline || "—"}`,
+        `Project: ${values.brief || "—"}`,
+      ].join("\n");
+      navigator.clipboard?.writeText(brief).then(() => {
+        status.textContent = "Your project brief is copied. Paste it into the Instagram message that just opened.";
+      }).catch(() => {
+        status.textContent = "Instagram is open. Please send Alifway Media your project details there.";
+      });
       window.open("https://www.instagram.com/alifwaymedia.ae/", "_blank", "noopener,noreferrer");
     });
   }
