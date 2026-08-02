@@ -82,12 +82,10 @@ export default function Home() {
               </article>
             </div>
 
-            <img
-              className="hero-lens-mark"
-              data-hero-mark
-              src="/assets/alifway_media_dark_purple_monogram_transparent.png"
-              alt=""
-            />
+            <div className="hero-wordmark" data-hero-mark aria-hidden="true">
+              <span>Alifway Media</span>
+              <i>Vision in motion</i>
+            </div>
 
             <div className="hero-scroll-meter" aria-hidden="true">
               <span>Scroll to assemble</span>

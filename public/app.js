@@ -169,6 +169,7 @@
         heroMark.style.setProperty("--mark-reveal", markReveal.toFixed(4));
         heroMark.style.setProperty("--mark-opacity", (markReveal * 0.92).toFixed(4));
         heroMark.style.setProperty("--mark-scale", (0.54 + markReveal * 0.46).toFixed(4));
+        heroMark.style.setProperty("--mark-spacing", `${(0.14 - markReveal * 0.1).toFixed(3)}em`);
       }
       if (meter) meter.style.transform = `scaleX(${smoothedProgress.toFixed(4)})`;
       requestAnimationFrame(render);
