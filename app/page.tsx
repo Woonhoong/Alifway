@@ -25,8 +25,10 @@ export default function Home() {
       <header className="site-nav" aria-label="Primary navigation">
         <a className="brand-link" href="#top" aria-label="Alifway Media, back to top">
           <img
-            src="/assets/Alifway Media - Logo new (3).png"
+            src="/assets/alifway-media-header-clear.png"
             alt="Alifway Media"
+            width="2185"
+            height="405"
           />
         </a>
         <a className="nav-work" href="#selected-work">
