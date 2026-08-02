@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import MotionSystem from "./motion-system";
 
 export const metadata: Metadata = {
   title: "Alifway Media — Vision in Motion",
@@ -15,7 +16,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Syne:wght@500;600&display=swap" rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body><MotionSystem />{children}</body>
     </html>
   );
 }

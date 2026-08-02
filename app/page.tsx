@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ClientScripts from "./client-scripts";
 
 export default function Home() {
@@ -32,7 +33,7 @@ export default function Home() {
           />
         </a>
         <div className="nav-links">
-          <a href="/projects">Projects</a>
+          <Link href="/projects">Projects</Link>
           <a className="nav-work" href="#selected-work">
             <span>Portfolio</span><span aria-hidden="true">↘</span>
           </a>
@@ -93,27 +94,27 @@ export default function Home() {
         </section>
 
         <section className="work-index" id="selected-work" aria-labelledby="work-heading">
-          <div className="section-heading">
+          <div className="section-heading" data-motion="rise">
             <p className="section-kicker">Selected work / 04</p>
             <h2 id="work-heading">A living index<br />of moving ideas.</h2>
           </div>
 
           <div className="project-list" role="list">
-            <a className="project-row" role="listitem" href="/projects">
+            <Link className="project-row" role="listitem" href="/projects" data-motion="rise">
               <span className="project-number">01</span><h3>Automotive / Motion Study</h3><span className="project-year">Film · 2026</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a className="project-row" role="listitem" href="/projects">
+            </Link>
+            <Link className="project-row" role="listitem" href="/projects" data-motion="rise">
               <span className="project-number">02</span><h3>Hospitality / A Sense of Place</h3><span className="project-year">Campaign · 2026</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a className="project-row" role="listitem" href="/projects">
+            </Link>
+            <Link className="project-row" role="listitem" href="/projects" data-motion="rise">
               <span className="project-number">03</span><h3>Fashion / After Light</h3><span className="project-year">Editorial · 2025</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a className="project-row" role="listitem" href="/projects">
+            </Link>
+            <Link className="project-row" role="listitem" href="/projects" data-motion="rise">
               <span className="project-number">04</span><h3>Architecture / Human Scale</h3><span className="project-year">Narrative · 2025</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </a>
+            </Link>
           </div>
 
-          <div className="social-portals">
+          <div className="social-portals" data-motion="clip">
             <a href="https://www.behance.net/alifwaymedia" target="_blank" rel="noreferrer">
               <span>Behance / Full portfolio</span><strong>Explore the<br />Archive</strong><i aria-hidden="true">↗</i>
             </a>
@@ -123,7 +124,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="contact" aria-labelledby="contact-heading">
+        <section className="contact" aria-labelledby="contact-heading" data-motion="rise">
           <p className="section-kicker">The next frame / 05</p>
           <h2 id="contact-heading">Start Your<br />Project</h2>
           <form className="contact-form" id="contact-form">
