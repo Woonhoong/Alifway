@@ -31,7 +31,7 @@ const raw: Omit<Project, "slug">[] = [
 ];
 const slugify = (value: string) => value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 export const projects: Project[] = raw.map((project, index) => ({ ...project, slug: `${slugify(project.title)}-${String(index + 1).padStart(2, "0")}` }));
-export const categories = ["All Work", "Food", "Automotive", "Fashion & Beauty", "Branding", "Events", "Social Films"] as const;
+export const categories: Category[] = ["Food", "Automotive", "Fashion & Beauty", "Branding", "Events", "Social Films"];
 export const projectStatement: Record<Category, string> = {
   Food: "Texture, appetite and atmosphere shaped into a precise visual rhythm.",
   Automotive: "Machine, movement and road presence directed through cinematic detail.",

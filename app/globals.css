@@ -652,6 +652,51 @@ button, input, select, textarea { font: inherit; }
 .projects-hero h1 { grid-column: 2; margin: 0; font-family: var(--display); font-size: clamp(4.4rem, 11vw, 11.5rem); font-weight: 500; line-height: .8; letter-spacing: -.07em; text-transform: uppercase; }
 .projects-intro { grid-column: 2; display: flex; justify-content: space-between; gap: 2rem; margin-top: 3rem; padding-top: 1.4rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; }
 .projects-intro p { max-width: 430px; margin: 0; line-height: 1.6; }
+.category-chooser { padding: clamp(7rem, 13vw, 12rem) clamp(1.3rem, 7vw, 8rem); border-top: 1px solid var(--line); }
+.category-heading { display: grid; grid-template-columns: .42fr 1.08fr .5fr; gap: 2rem 5vw; align-items: end; margin-bottom: clamp(3rem, 7vw, 7rem); }
+.category-heading .section-kicker { align-self: start; }
+.category-heading h2 { margin: 0; font-family: var(--display); font-size: clamp(3.4rem, 7vw, 8rem); font-weight: 500; line-height: .84; letter-spacing: -.065em; text-transform: uppercase; }
+.category-heading > p:last-child { max-width: 330px; margin: 0 0 .7rem; color: var(--muted); font-size: .7rem; line-height: 1.65; letter-spacing: .1em; text-transform: uppercase; }
+.category-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.category-card {
+  position: relative;
+  min-height: clamp(330px, 38vw, 570px);
+  overflow: hidden;
+  padding: clamp(1.3rem, 2.8vw, 2.6rem);
+  border: 0;
+  border-right: 1px solid rgba(255,255,255,.28);
+  border-bottom: 1px solid rgba(255,255,255,.28);
+  background: #20182f;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  isolation: isolate;
+}
+.category-card[data-category="Food"] { background: linear-gradient(135deg, #5a2f21, #1f1525); }
+.category-card[data-category="Automotive"] { background: linear-gradient(135deg, #22252d, #13121e); }
+.category-card[data-category="Fashion & Beauty"] { background: linear-gradient(135deg, #7c516d, #24172d); }
+.category-card[data-category="Branding"] { background: linear-gradient(135deg, #61407b, #21172c); }
+.category-card[data-category="Events"] { background: linear-gradient(135deg, #312552, #11101e); }
+.category-card[data-category="Social Films"] { background: linear-gradient(135deg, #7d435d, #281629); }
+.category-card-media, .category-card-shade { position: absolute; z-index: -2; inset: 0; }
+.category-card-media img { width: 100%; height: 100%; object-fit: cover; opacity: .76; filter: saturate(.74) contrast(.96); transform: scale(1.015); transition: transform 1s cubic-bezier(.22,1,.36,1), filter .7s ease, opacity .7s ease; }
+.category-card-shade { z-index: -1; background: linear-gradient(180deg, rgba(14,11,23,.12) 0%, rgba(16,12,25,.2) 42%, rgba(18,13,28,.9) 100%), linear-gradient(110deg, rgba(139,83,172,.2), transparent 52%); }
+.category-card-index { font-size: .6rem; letter-spacing: .2em; opacity: .72; }
+.category-card-copy { position: absolute; left: clamp(1.3rem, 2.8vw, 2.6rem); right: clamp(1.3rem, 2.8vw, 2.6rem); bottom: clamp(1.4rem, 3vw, 2.8rem); display: block; }
+.category-card-copy strong { display: block; font-family: var(--display); font-size: clamp(2.4rem, 4.5vw, 5.3rem); font-weight: 500; line-height: .88; letter-spacing: -.06em; text-transform: uppercase; }
+.category-card-copy small { display: block; max-width: 440px; margin-top: 1.1rem; color: rgba(255,255,255,.7); font-size: clamp(.62rem, .75vw, .74rem); line-height: 1.55; letter-spacing: .07em; text-transform: uppercase; opacity: 0; transform: translateY(12px); transition: opacity .45s ease, transform .55s cubic-bezier(.22,1,.36,1); }
+.category-card-count { position: absolute; top: clamp(1.2rem, 2.5vw, 2.3rem); right: clamp(1.2rem, 2.5vw, 2.3rem); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; }
+.category-card-count i { display: inline-block; margin-left: .5rem; color: #d9a8f4; font-style: normal; transition: transform .4s cubic-bezier(.22,1,.36,1); }
+.category-card:hover .category-card-media img, .category-card:focus-visible .category-card-media img, .category-card.is-active .category-card-media img { opacity: .9; filter: saturate(.9) contrast(1.02); transform: scale(1.06); }
+.category-card:hover .category-card-copy small, .category-card:focus-visible .category-card-copy small, .category-card.is-active .category-card-copy small { opacity: 1; transform: translateY(0); }
+.category-card:hover .category-card-count i, .category-card:focus-visible .category-card-count i { transform: translate(4px, 4px); }
+.category-card.is-active { outline: 3px solid var(--purple); outline-offset: -3px; }
+.category-card:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
+.category-films { scroll-margin-top: 72px; border-top: 1px solid var(--line); }
+.category-empty-state { display: flex; justify-content: space-between; align-items: center; min-height: 180px; padding: 2rem clamp(1.3rem, 7vw, 8rem); color: var(--muted); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
+.category-empty-state p { margin: 0; color: var(--bone); }
+.archive-status button { padding: 0; border: 0; background: transparent; color: var(--purple); font-size: inherit; letter-spacing: inherit; text-transform: inherit; cursor: pointer; }
+.archive-status button:hover, .archive-status button:focus-visible { color: var(--bone); }
 .project-filters {
   position: sticky;
   z-index: 30;
@@ -752,6 +797,16 @@ button, input, select, textarea { font: inherit; }
   .projects-hero h1 { font-size: clamp(4rem, 20vw, 7rem); }
   .projects-intro { display: block; }
   .projects-intro span { display: block; margin-top: 1.25rem; }
+  .category-chooser { padding: 6rem 1.2rem; }
+  .category-heading { grid-template-columns: 1fr; margin-bottom: 3rem; }
+  .category-heading h2 { font-size: clamp(3.7rem, 17vw, 6.2rem); }
+  .category-heading > p:last-child { margin-top: 1rem; }
+  .category-grid { grid-template-columns: 1fr; }
+  .category-card { min-height: min(118vw, 500px); }
+  .category-card-copy strong { font-size: clamp(2.7rem, 13vw, 4.8rem); }
+  .category-card-copy small { opacity: 1; transform: none; font-size: .6rem; }
+  .category-empty-state { display: block; min-height: 150px; padding: 2rem 1.2rem; line-height: 1.8; }
+  .category-empty-state p { margin-top: .7rem; }
   .project-filters { top: 72px; padding: 0 1.15rem; }
   .project-filters a, .project-filters button { min-height: 58px; padding: 0 .9rem; font-size: .56rem; }
   .archive-status { display: block; padding: 1rem 1.2rem; line-height: 1.7; }
