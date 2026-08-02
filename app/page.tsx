@@ -64,6 +64,14 @@ export default function Home() {
 
         <section className="media-journey" id="media-process" data-media-journey aria-labelledby="media-journey-heading">
           <div className="media-stage">
+            <div className="media-journey-backgrounds" aria-hidden="true">
+              <img className="is-active" data-media-background src="/assets/production-line/01-directing-camera-background.png" alt="" />
+              <img data-media-background src="/assets/production-line/02-cinema-background.png" alt="" />
+              <img data-media-background src="/assets/production-line/03-post-production-background.png" alt="" />
+              <img data-media-background src="/assets/production-line/04-sound-production-background.png" alt="" />
+              <img data-media-background src="/assets/production-line/05-final-delivery-background.png" alt="" />
+            </div>
+
             <div className="media-journey-head">
               <p className="section-kicker">The production line / 02</p>
               <h2 id="media-journey-heading">Every idea<br />finds its form.</h2>

@@ -153,6 +153,7 @@
     if (!journey) return;
     const glyphs = [...journey.querySelectorAll("[data-media-glyph]")];
     const steps = [...journey.querySelectorAll("[data-media-step]")];
+    const backgrounds = [...journey.querySelectorAll("[data-media-background]")];
     const counter = journey.querySelector("#media-step-number");
     let target = 0;
     let current = reducedMotion ? 0 : 0;
@@ -170,6 +171,7 @@
       activeIndex = index;
       glyphs.forEach((glyph, glyphIndex) => glyph.classList.toggle("is-active", glyphIndex === index));
       steps.forEach((step, stepIndex) => step.classList.toggle("is-active", stepIndex === index));
+      backgrounds.forEach((background, backgroundIndex) => background.classList.toggle("is-active", backgroundIndex === index));
       if (counter) counter.textContent = String(index + 1).padStart(2, "0");
     };
 
