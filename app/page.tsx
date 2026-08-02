@@ -11,7 +11,7 @@ export default function Home() {
         <div className="loader-core">
           <img
             className="loader-mark"
-            src="/assets/alifway_media_dark_purple_monogram_transparent.png"
+            src="/assets/alifway_media_white_monogram_transparent.png"
             alt="Alifway Media"
           />
           <div className="loader-meta">

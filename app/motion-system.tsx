@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect } from "react";
-import MediaIcon from "./media-icons";
 
 export default function MotionSystem() {
   useEffect(() => {
@@ -70,5 +69,5 @@ export default function MotionSystem() {
     };
   }, []);
 
-  return <><div className="page-progress" aria-hidden="true"><i /></div><div className="page-transition" aria-hidden="true"><span>Alifway</span><div className="page-transition-glyph"><MediaIcon name="clapper" /></div><small>Vision in motion</small></div></>;
+  return <><div className="page-progress" aria-hidden="true"><i /></div><div className="page-transition" aria-hidden="true"><span>Alifway</span><img className="page-transition-glyph" src="/assets/alifway_media_white_monogram_transparent.png" alt="" /><small>Vision in motion</small></div></>;
 }
