@@ -21,8 +21,8 @@ const practiceScenes = [
     title: "Cinematography",
     description: "Light, movement and performance composed with intention—before the first frame is ever recorded.",
     detail: "Direction · Camera · Lighting",
-    poster: "/assets/categories/food.png",
-    video: "https://drive.google.com/uc?export=download&id=10Iv9ZXhZ1UYPnrnsnpY22g6TrRIEVQgN",
+    fallback: "/assets/categories/food.png",
+    frame: "https://drive.google.com/thumbnail?id=10Iv9ZXhZ1UYPnrnsnpY22g6TrRIEVQgN&sz=w1920",
     href: "/projects/june-11-06",
   },
   {
@@ -31,8 +31,8 @@ const practiceScenes = [
     title: "Post-production",
     description: "Picture, colour and sound refined into a rhythm that holds attention and carries the story.",
     detail: "Edit · Colour · Sound design",
-    poster: "/assets/categories/events.png",
-    video: "https://drive.google.com/uc?export=download&id=1WFr64g9YJQLcs9ML_lksHq_1MUf-VPcA",
+    fallback: "/assets/categories/events.png",
+    frame: "https://drive.google.com/thumbnail?id=1WFr64g9YJQLcs9ML_lksHq_1MUf-VPcA&sz=w1920",
     href: "/projects/dj-poli-08",
   },
   {
@@ -41,10 +41,19 @@ const practiceScenes = [
     title: "Brand narratives",
     description: "A clear brand idea translated into cinematic moments made for campaigns, screens and the scroll.",
     detail: "Concept · Campaign · Social films",
-    poster: "/assets/categories/branding.png",
-    video: "https://drive.google.com/uc?export=download&id=1mVPgO7MDzzLrfn9ma3Jyjz6f4-HeY4iA",
+    fallback: "/assets/categories/branding.png",
+    frame: "https://drive.google.com/thumbnail?id=1mVPgO7MDzzLrfn9ma3Jyjz6f4-HeY4iA&sz=w1920",
     href: "/projects/may-28-cut-ii-07",
   },
+] as const;
+
+const practiceFrameStrip = [
+  "10Iv9ZXhZ1UYPnrnsnpY22g6TrRIEVQgN",
+  "1WFr64g9YJQLcs9ML_lksHq_1MUf-VPcA",
+  "1mVPgO7MDzzLrfn9ma3Jyjz6f4-HeY4iA",
+  "1TcmZs-76S1sl2OdDL8x9HUFbQnnz2d16",
+  "1s3ASKGIOaXBl4JFOF5sYgiXBeqDhauj-",
+  "1aHuqEIeXxWqefo2ndCSkyi-OSLWgewRV",
 ] as const;
 
 export default function Home() {
@@ -229,17 +238,8 @@ export default function Home() {
                   aria-label={`View ${scene.title} project`}
                   key={scene.title}
                 >
-                  <img src={scene.poster} alt="" loading={index === 0 ? "eager" : "lazy"} />
-                  <video
-                    muted
-                    loop
-                    playsInline
-                    preload={index === 0 ? "metadata" : "none"}
-                    poster={scene.poster}
-                    aria-hidden="true"
-                  >
-                    <source src={scene.video} type="video/mp4" />
-                  </video>
+                  <img className="practice-frame-fallback" src={scene.fallback} alt="" loading={index === 0 ? "eager" : "lazy"} />
+                  <img className="practice-real-frame" src={scene.frame} alt="" loading={index === 0 ? "eager" : "lazy"} referrerPolicy="no-referrer" />
                   <span className="practice-scene-shade" aria-hidden="true" />
                   <span className="practice-scene-label">Alifway project reel · {scene.number}</span>
                   <span className="practice-scene-open">View film <MediaIcon name="play" /></span>
@@ -264,7 +264,7 @@ export default function Home() {
             </ol>
 
             <div className="practice-filmstrip" aria-hidden="true">
-              {categories.map((category) => <img src={categoryAsset[category]} alt="" key={category} />)}
+              {practiceFrameStrip.map((id) => <img src={`https://drive.google.com/thumbnail?id=${id}&sz=w640`} alt="" loading="lazy" referrerPolicy="no-referrer" key={id} />)}
             </div>
             <div className="practice-counter" aria-hidden="true"><span id="practice-step-number">01</span><i /><span>03</span></div>
           </div>

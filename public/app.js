@@ -281,10 +281,6 @@
       scenes.forEach((scene, sceneIndex) => {
         const active = sceneIndex === safeIndex;
         scene.classList.toggle("is-active", active);
-        const video = scene.querySelector("video");
-        if (!video) return;
-        if (active && !reducedMotion) video.play().catch(() => {});
-        else video.pause();
       });
       steps.forEach((step, stepIndex) => step.classList.toggle("is-active", stepIndex === safeIndex));
       words.forEach((word, wordIndex) => word.classList.toggle("is-active", wordIndex === safeIndex));
