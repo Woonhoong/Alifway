@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import type { CSSProperties } from "react";
-import { useMemo, useRef, useState } from "react";
-import { categories, projectStatement, projects, type Category } from "./data";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { categories, categoryAsset, projectStatement, projects, type Category } from "./data";
 import MediaIcon from "../media-icons";
 
 export default function ProjectsPage() {
@@ -11,6 +11,12 @@ export default function ProjectsPage() {
   const [isFiltering, setIsFiltering] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const filtered = useMemo(() => active ? projects.filter((project) => project.category === active) : [], [active]);
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("category") as Category | null;
+    if (!requested || !categories.includes(requested)) return;
+    setActive(requested);
+    window.setTimeout(() => document.getElementById("category-films")?.scrollIntoView({ behavior: "smooth", block: "start" }), 420);
+  }, []);
   const select = (category: Category) => {
     if (category === active) return;
     setIsFiltering(true);
@@ -27,7 +33,7 @@ export default function ProjectsPage() {
   return <>
     <header className="site-nav projects-nav" aria-label="Primary navigation">
       <Link className="brand-link" href="/" aria-label="Alifway Media home"><img src="/assets/Alifway Media - Logo new (3).png" alt="Alifway Media" width="2185" height="405" /></Link>
-      <div className="nav-links"><Link className="is-current" href="/projects">Projects</Link><Link className="nav-work" href="/">Home <span aria-hidden="true">↖</span></Link></div>
+      <div className="nav-links"><Link className="is-current" href="/projects">Projects</Link><Link className="nav-work" href="/">Home <span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="camera" /></span></Link></div>
     </header>
     <main className="projects-page" id="top">
       <section className="projects-hero">
@@ -51,7 +57,6 @@ export default function ProjectsPage() {
         <div className="category-grid">
           {categories.map((category, index) => {
             const categoryProjects = projects.filter((project) => project.category === category);
-            const representative = categoryProjects[0];
             return <button
               key={category}
               type="button"
@@ -64,12 +69,12 @@ export default function ProjectsPage() {
               aria-controls="category-films"
             >
               <span className="category-card-media" aria-hidden="true">
-                <img src={`https://drive.google.com/thumbnail?id=${representative.id}&sz=w1600`} alt="" loading="lazy" referrerPolicy="no-referrer" onError={(event) => { event.currentTarget.style.display = "none"; }} />
+                <img src={categoryAsset[category]} alt="" loading="lazy" />
               </span>
               <span className="category-card-shade" aria-hidden="true" />
               <span className="category-card-index">0{index + 1}</span>
               <span className="category-card-copy"><strong>{category}</strong><small>{projectStatement[category]}</small></span>
-              <span className="category-card-count">{categoryProjects.length} films <i aria-hidden="true">↘</i></span>
+              <span className="category-card-count">{categoryProjects.length} films <i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="play" /></i></span>
             </button>;
           })}
         </div>
@@ -77,22 +82,22 @@ export default function ProjectsPage() {
 
       <section id="category-films" className={`category-films${active ? " has-selection" : ""}`} aria-live="polite">
         {active ? <>
-          <div className="archive-status"><p><strong>{active}</strong> / {filtered.length} films</p><button type="button" onClick={() => setActive(null)}>Choose another category ↑</button></div>
+          <div className="archive-status"><p><strong>{active}</strong> / {filtered.length} films</p><button type="button" onClick={() => setActive(null)}>Choose another category <span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="aperture" /></span></button></div>
           <div className={`video-index${isFiltering ? " is-filtering" : ""}`} aria-label={`${active} projects`}>
             {filtered.map((project, index) => <article className="video-project" key={project.id} id={project.slug} data-motion="project" style={{ "--motion-order": index % 3 } as CSSProperties}>
               <div className="video-frame" data-parallax="8">
                 <iframe src={`https://drive.google.com/file/d/${project.id}/preview`} title={`${project.title} — Alifway Media`} allow="autoplay; fullscreen" allowFullScreen loading="lazy" />
-                <Link className="frame-project-link" href={`/projects/${project.slug}`} aria-label={`Enter ${project.title} project page`}><span>Open project</span><i>↗</i></Link>
+                <Link className="frame-project-link" href={`/projects/${project.slug}`} aria-label={`Enter ${project.title} project page`}><span>Open project</span><i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="play" /></i></Link>
                 <span className="frame-corner frame-corner-a" aria-hidden="true" /><span className="frame-corner frame-corner-b" aria-hidden="true" />
               </div>
-              <div className="video-meta"><span>{String(index + 1).padStart(2, "0")}</span><h2><Link href={`/projects/${project.slug}`}>{project.title}</Link></h2><p>{project.year} · {project.category}</p><Link href={`/projects/${project.slug}`} aria-label={`View ${project.title} project page`}>Enter ↗</Link></div>
+              <div className="video-meta"><span>{String(index + 1).padStart(2, "0")}</span><h2><Link href={`/projects/${project.slug}`}>{project.title}</Link></h2><p>{project.year} · {project.category}</p><Link className="media-text-link" href={`/projects/${project.slug}`} aria-label={`View ${project.title} project page`}>Enter <span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="play" /></span></Link></div>
               <p className="source-name">{project.filename}</p>
             </article>)}
           </div>
         </> : <div className="category-empty-state"><span>Collections / 06</span><p>Choose a category above to view its films.</p></div>}
       </section>
-      <section className="projects-outro" data-motion="rise"><p className="section-kicker">More work / 27+</p><a href="https://www.behance.net/alifwaymedia" target="_blank" rel="noreferrer"><span className="line-mask"><span>Explore the</span></span><span className="line-mask"><span>Archive <i>↗</i></span></span></a></section>
+      <section className="projects-outro" data-motion="rise"><p className="section-kicker">More work / 27+</p><a href="https://www.behance.net/alifwaymedia" target="_blank" rel="noreferrer"><span className="line-mask"><span>Explore the</span></span><span className="line-mask"><span>Archive <i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="film" /></i></span></span></a></section>
     </main>
-    <footer className="site-footer projects-footer"><img src="/assets/alifway_media_dark_purple_monogram_transparent.png" alt="" /><p>Alifway Media © 2026</p><a href="#top">Back to top ↑</a></footer>
+    <footer className="site-footer projects-footer"><img src="/assets/alifway_media_dark_purple_monogram_transparent.png" alt="" /><p>Alifway Media © 2026</p><a className="footer-media-link" href="#top">Back to top <span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="aperture" /></span></a></footer>
   </>;
 }

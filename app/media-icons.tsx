@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 
-export type MediaIconName = "camera" | "film" | "clapper" | "edit" | "mic" | "play";
+export type MediaIconName = "camera" | "film" | "clapper" | "edit" | "mic" | "play" | "aperture" | "previous" | "next";
 
 type Props = {
   name: MediaIconName;
@@ -38,6 +38,19 @@ export default function MediaIcon({ name, className = "" }: Props) {
     play: <>
       <path d="M12 7l29 17-29 17z" />
       <path d="M7 7v34" />
+    </>,
+    aperture: <>
+      <circle cx="24" cy="24" r="18" />
+      <circle cx="24" cy="24" r="5" />
+      <path d="M24 6l7 12M40 15l-14 1M40 33l-7-12M24 42l-7-12M8 33l14-1M8 15l7 12" />
+    </>,
+    previous: <>
+      <path d="M10 9v30" />
+      <path d="M38 10L15 24l23 14z" />
+    </>,
+    next: <>
+      <path d="M38 9v30" />
+      <path d="M10 10l23 14-23 14z" />
     </>,
   };
 

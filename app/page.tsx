@@ -1,6 +1,17 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- native anchors avoid a Vinext hydration fault in the cinematic home shell */
 import ClientScripts from "./client-scripts";
-import MediaIcon from "./media-icons";
+import type { CSSProperties } from "react";
+import MediaIcon, { type MediaIconName } from "./media-icons";
+import { categories, categoryAsset, categoryHeadline, projects, type Category } from "./projects/data";
+
+const categoryIcons: Record<Category, MediaIconName> = {
+  Food: "camera",
+  Automotive: "film",
+  "Fashion & Beauty": "aperture",
+  Branding: "clapper",
+  Events: "mic",
+  "Social Films": "play",
+};
 
 export default function Home() {
   return (
@@ -36,7 +47,7 @@ export default function Home() {
         <div className="nav-links">
           <a href="/projects">Projects</a>
           <a className="nav-work" href="#selected-work">
-            <span>Portfolio</span><span aria-hidden="true">↘</span>
+            <span>Portfolio</span><span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="aperture" /></span>
           </a>
         </div>
       </header>
@@ -202,27 +213,32 @@ export default function Home() {
             <h2 id="work-heading">A living index<br />of moving ideas.</h2>
           </div>
 
-          <div className="project-list" role="list">
-            <a className="project-row" role="listitem" href="/projects" data-motion="rise">
-              <span className="project-number">01</span><h3>Automotive / Motion Study</h3><span className="project-year">Film · 2026</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a className="project-row" role="listitem" href="/projects" data-motion="rise">
-              <span className="project-number">02</span><h3>Hospitality / A Sense of Place</h3><span className="project-year">Campaign · 2026</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a className="project-row" role="listitem" href="/projects" data-motion="rise">
-              <span className="project-number">03</span><h3>Fashion / After Light</h3><span className="project-year">Editorial · 2025</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </a>
-            <a className="project-row" role="listitem" href="/projects" data-motion="rise">
-              <span className="project-number">04</span><h3>Architecture / Human Scale</h3><span className="project-year">Narrative · 2025</span><span className="project-arrow" aria-hidden="true">↗</span>
-            </a>
+          <div className="home-category-grid" role="list">
+            {categories.map((category, index) => {
+              const count = projects.filter((project) => project.category === category).length;
+              return <a
+                className="home-category-card"
+                role="listitem"
+                href={`/projects?category=${encodeURIComponent(category)}#category-films`}
+                data-motion="project"
+                style={{ "--motion-order": index % 3 } as CSSProperties}
+                key={category}
+              >
+                <img src={categoryAsset[category]} alt="" loading="lazy" />
+                <span className="home-category-shade" aria-hidden="true" />
+                <span className="home-category-number">0{index + 1}</span>
+                <span className="home-category-copy"><small>{categoryHeadline[category]}</small><strong>{category}</strong></span>
+                <span className="home-category-meta">{count} films <i className="media-nav-symbol" aria-hidden="true"><MediaIcon name={categoryIcons[category]} /></i></span>
+              </a>;
+            })}
           </div>
 
           <div className="social-portals" data-motion="clip">
             <a href="https://www.behance.net/alifwaymedia" target="_blank" rel="noreferrer">
-              <span>Behance / Full portfolio</span><strong>Explore the<br />Archive</strong><i aria-hidden="true">↗</i>
+              <span>Behance / Full portfolio</span><strong>Explore the<br />Archive</strong><i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="film" /></i>
             </a>
             <a href="https://www.instagram.com/alifwaymedia.ae/" target="_blank" rel="noreferrer">
-              <span>Instagram / Daily practice</span><strong>Follow our<br />Vision</strong><i aria-hidden="true">↗</i>
+              <span>Instagram / Daily practice</span><strong>Follow our<br />Vision</strong><i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="camera" /></i>
             </a>
           </div>
         </section>
@@ -282,7 +298,7 @@ export default function Home() {
             </div>
             <div className="brief-submit">
               <p>Submitting prepares your brief and opens Alifway Media on Instagram.</p>
-              <button type="submit"><span>Send project brief</span><i aria-hidden="true">↗</i></button>
+              <button type="submit"><span>Send project brief</span><i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="clapper" /></i></button>
             </div>
             <p className="form-status" id="form-status" aria-live="polite" />
           </form>
@@ -292,7 +308,7 @@ export default function Home() {
       <footer className="site-footer">
         <img src="/assets/alifway_media_dark_purple_monogram_transparent.png" alt="" />
         <p>Alifway Media © 2026</p>
-        <a href="#top">Back to top ↑</a>
+        <a className="footer-media-link" href="#top">Back to top <span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="aperture" /></span></a>
       </footer>
 
       <ClientScripts />

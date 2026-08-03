@@ -32,6 +32,22 @@ const raw: Omit<Project, "slug">[] = [
 const slugify = (value: string) => value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 export const projects: Project[] = raw.map((project, index) => ({ ...project, slug: `${slugify(project.title)}-${String(index + 1).padStart(2, "0")}` }));
 export const categories: Category[] = ["Food", "Automotive", "Fashion & Beauty", "Branding", "Events", "Social Films"];
+export const categoryAsset: Record<Category, string> = {
+  Food: "/assets/categories/food.png",
+  Automotive: "/assets/categories/automotive.png",
+  "Fashion & Beauty": "/assets/categories/fashion-beauty.png",
+  Branding: "/assets/categories/branding.png",
+  Events: "/assets/categories/events.png",
+  "Social Films": "/assets/categories/social-films.png",
+};
+export const categoryHeadline: Record<Category, string> = {
+  Food: "Stories You Can Taste",
+  Automotive: "Motion, Engineered",
+  "Fashion & Beauty": "Form. Texture. Presence.",
+  Branding: "Identity in Motion",
+  Events: "Moments, Magnified",
+  "Social Films": "Built for the Scroll",
+};
 export const projectStatement: Record<Category, string> = {
   Food: "Texture, appetite and atmosphere shaped into a precise visual rhythm.",
   Automotive: "Machine, movement and road presence directed through cinematic detail.",
