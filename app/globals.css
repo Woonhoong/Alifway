@@ -649,14 +649,69 @@ button, input, select, textarea { font: inherit; }
 
 .services-title {
   position: absolute;
+  z-index: 3;
   top: 16vh;
   left: clamp(1.3rem, 7vw, 8rem);
   opacity: calc(.12 + var(--chapter-progress, 0) * 1.4);
   transform: translateY(calc(26px - var(--chapter-progress, 0) * 26px));
 }
 .services-title h2 { font-size: clamp(3rem, 7.4vw, 8rem); }
+.services-atmosphere {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.services-atmosphere::before {
+  content: "";
+  position: absolute;
+  left: -12vw;
+  right: -12vw;
+  top: 50%;
+  height: clamp(76px, 10vw, 150px);
+  background: linear-gradient(90deg, transparent 0%, rgba(215,183,235,.08) 18%, rgba(139,83,172,.16) 48%, rgba(75,43,103,.08) 78%, transparent 100%);
+  filter: blur(18px);
+  opacity: calc(.48 + var(--chapter-progress, 0) * .34);
+  transform: translateY(-50%) scaleX(calc(.72 + var(--chapter-progress, 0) * .28));
+  transform-origin: center;
+}
+.services-atmosphere span {
+  position: absolute;
+  left: -13vw;
+  width: max-content;
+  color: rgba(75,43,103,.052);
+  font-family: var(--display);
+  font-size: clamp(5.5rem, 12.6vw, 13.5rem);
+  font-weight: 600;
+  line-height: .78;
+  letter-spacing: -.065em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  will-change: transform;
+}
+.services-atmosphere span:first-child {
+  top: 41%;
+  transform: translate3d(calc(var(--chapter-progress, 0) * -18vw), -50%, 0);
+}
+.services-atmosphere span:nth-child(2) {
+  top: 60%;
+  color: rgba(139,83,172,.04);
+  transform: translate3d(calc(-18vw + var(--chapter-progress, 0) * 20vw), -50%, 0);
+}
+.services-atmosphere i {
+  position: absolute;
+  left: -6vw;
+  right: -6vw;
+  top: 53%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,83,172,.12) 18% 82%, transparent);
+  transform: scaleX(calc(.55 + var(--chapter-progress, 0) * .45));
+  transform-origin: center;
+}
 .service-callouts {
   position: absolute;
+  z-index: 3;
   right: clamp(1.3rem, 8vw, 9rem);
   bottom: 12vh;
   width: min(540px, 43vw);
@@ -678,6 +733,7 @@ button, input, select, textarea { font: inherit; }
 .service-callouts i { display: block; width: 46px; height: 1px; background: var(--purple); }
 .service-callouts span { color: var(--purple); font-size: .6rem; }
 .service-callouts strong { font-size: clamp(.9rem, 1.6vw, 1.35rem); font-weight: 400; text-transform: uppercase; letter-spacing: .07em; }
+.services-chapter .chapter-index { z-index: 3; }
 
 .work-index {
   padding: 18vh clamp(1.3rem, 7vw, 8rem) 10vh;

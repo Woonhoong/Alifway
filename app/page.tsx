@@ -180,6 +180,11 @@ export default function Home() {
             </video>
             <img className="sequence-fallback" src="/assets/alifway_media_dark_purple_monogram_transparent.png" alt="" />
             <div className="cinema-wash" aria-hidden="true" />
+            <div className="services-atmosphere" aria-hidden="true">
+              <span>Direction · Image · Sound · Edit · Motion ·</span>
+              <span>Production · Film · Colour · Story ·</span>
+              <i />
+            </div>
             <div className="services-title">
               <p className="eyebrow">Image. Rhythm. Meaning.</p>
               <h2>What we<br />bring to frame.</h2>
