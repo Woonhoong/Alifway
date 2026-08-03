@@ -3,6 +3,7 @@ import ClientScripts from "./client-scripts";
 import type { CSSProperties } from "react";
 import MediaIcon, { type MediaIconName } from "./media-icons";
 import { categories, categoryAsset, categoryHeadline, projects, type Category } from "./projects/data";
+import { ContactTeaser, SiteFooter, SiteHeader } from "./site-chrome";
 
 const categoryIcons: Record<Category, MediaIconName> = {
   Food: "camera",
@@ -35,22 +36,7 @@ export default function Home() {
         </div>
       </div>
 
-      <header className="site-nav" aria-label="Primary navigation">
-        <a className="brand-link" href="#top" aria-label="Alifway Media, back to top">
-          <img
-            src="/assets/Alifway Media - Logo new (3).png"
-            alt="Alifway Media"
-            width="2185"
-            height="405"
-          />
-        </a>
-        <div className="nav-links">
-          <a href="/projects">Projects</a>
-          <a className="nav-work" href="#selected-work">
-            <span>Portfolio</span><span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="aperture" /></span>
-          </a>
-        </div>
-      </header>
+      <SiteHeader current="home" />
 
       <main id="top">
         <section
@@ -243,73 +229,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="contact" id="contact" aria-labelledby="contact-heading" data-motion="rise">
-          <p className="section-kicker">The next frame / 06</p>
-          <h2 id="contact-heading">Start Your<br />Project</h2>
-          <form className="contact-form" id="contact-form">
-            <div className="brief-grid">
-              <label className="brief-field">
-                <span>Your name *</span>
-                <input name="name" type="text" placeholder="Name" autoComplete="name" required />
-              </label>
-              <label className="brief-field">
-                <span>Email address *</span>
-                <input id="contact-email" name="email" type="email" placeholder="name@company.com" autoComplete="email" required />
-              </label>
-              <label className="brief-field">
-                <span>Company / brand</span>
-                <input name="company" type="text" placeholder="Brand name" autoComplete="organization" />
-              </label>
-              <label className="brief-field">
-                <span>Phone / WhatsApp</span>
-                <input name="phone" type="tel" placeholder="+971" autoComplete="tel" />
-              </label>
-              <label className="brief-field">
-                <span>What do you need? *</span>
-                <select name="service" defaultValue="" required>
-                  <option value="" disabled>Select a service</option>
-                  <option>Brand film</option>
-                  <option>Social content</option>
-                  <option>Product campaign</option>
-                  <option>Event coverage</option>
-                  <option>Post-production</option>
-                  <option>Photography</option>
-                  <option>Something else</option>
-                </select>
-              </label>
-              <label className="brief-field">
-                <span>Estimated budget</span>
-                <select name="budget" defaultValue="Not sure yet">
-                  <option>Not sure yet</option>
-                  <option>Under AED 10,000</option>
-                  <option>AED 10,000–25,000</option>
-                  <option>AED 25,000–50,000</option>
-                  <option>AED 50,000+</option>
-                </select>
-              </label>
-              <label className="brief-field brief-field-wide">
-                <span>When do you need it?</span>
-                <input name="timeline" type="text" placeholder="Target date or timeframe" />
-              </label>
-              <label className="brief-field brief-field-wide brief-message">
-                <span>Tell us about the project *</span>
-                <textarea name="brief" rows={4} placeholder="What are you creating, who is it for, and what should it achieve?" required />
-              </label>
-            </div>
-            <div className="brief-submit">
-              <p>Submitting prepares your brief and opens Alifway Media on Instagram.</p>
-              <button type="submit"><span>Send project brief</span><i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="clapper" /></i></button>
-            </div>
-            <p className="form-status" id="form-status" aria-live="polite" />
-          </form>
-        </section>
+        <ContactTeaser />
       </main>
 
-      <footer className="site-footer">
-        <img src="/assets/alifway_media_dark_purple_monogram_transparent.png" alt="" />
-        <p>Alifway Media © 2026</p>
-        <a className="footer-media-link" href="#top">Back to top <span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="aperture" /></span></a>
-      </footer>
+      <SiteFooter />
 
       <ClientScripts />
     </>

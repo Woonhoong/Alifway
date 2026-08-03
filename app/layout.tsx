@@ -22,7 +22,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Syne:wght@500;600&display=swap" rel="stylesheet" />
       </head>
-      <body><MotionSystem />{children}</body>
+      <body>
+        <div className="site-ambient" aria-hidden="true"><i /><i /><span /></div>
+        <MotionSystem />
+        {children}
+      </body>
     </html>
   );
 }

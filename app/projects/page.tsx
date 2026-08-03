@@ -5,6 +5,7 @@ import type { CSSProperties } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { categories, categoryAsset, projectStatement, projects, type Category } from "./data";
 import MediaIcon from "../media-icons";
+import { ContactTeaser, SiteFooter, SiteHeader } from "../site-chrome";
 
 export default function ProjectsPage() {
   const [active, setActive] = useState<Category | null>(null);
@@ -31,10 +32,7 @@ export default function ProjectsPage() {
   };
 
   return <>
-    <header className="site-nav projects-nav" aria-label="Primary navigation">
-      <Link className="brand-link" href="/" aria-label="Alifway Media home"><img src="/assets/Alifway Media - Logo new (3).png" alt="Alifway Media" width="2185" height="405" /></Link>
-      <div className="nav-links"><Link className="is-current" href="/projects">Projects</Link><Link className="nav-work" href="/">Home <span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="camera" /></span></Link></div>
-    </header>
+    <SiteHeader current="projects" />
     <main className="projects-page" id="top">
       <section className="projects-hero">
         <div className="hero-media-cluster" data-parallax="34" aria-hidden="true">
@@ -97,7 +95,8 @@ export default function ProjectsPage() {
         </> : <div className="category-empty-state"><span>Collections / 06</span><p>Choose a category above to view its films.</p></div>}
       </section>
       <section className="projects-outro" data-motion="rise"><p className="section-kicker">More work / 27+</p><a href="https://www.behance.net/alifwaymedia" target="_blank" rel="noreferrer"><span className="line-mask"><span>Explore the</span></span><span className="line-mask"><span>Archive <i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="film" /></i></span></span></a></section>
+      <ContactTeaser label="Ready to create / 03" />
     </main>
-    <footer className="site-footer projects-footer"><img src="/assets/alifway_media_dark_purple_monogram_transparent.png" alt="" /><p>Alifway Media © 2026</p><a className="footer-media-link" href="#top">Back to top <span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="aperture" /></span></a></footer>
+    <SiteFooter />
   </>;
 }
