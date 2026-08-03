@@ -14,6 +14,39 @@ const categoryIcons: Record<Category, MediaIconName> = {
   "Social Films": "play",
 };
 
+const practiceScenes = [
+  {
+    number: "01",
+    action: "Capture",
+    title: "Cinematography",
+    description: "Light, movement and performance composed with intention—before the first frame is ever recorded.",
+    detail: "Direction · Camera · Lighting",
+    poster: "/assets/categories/food.png",
+    video: "https://drive.google.com/uc?export=download&id=10Iv9ZXhZ1UYPnrnsnpY22g6TrRIEVQgN",
+    href: "/projects/june-11-06",
+  },
+  {
+    number: "02",
+    action: "Shape",
+    title: "Post-production",
+    description: "Picture, colour and sound refined into a rhythm that holds attention and carries the story.",
+    detail: "Edit · Colour · Sound design",
+    poster: "/assets/categories/events.png",
+    video: "https://drive.google.com/uc?export=download&id=1WFr64g9YJQLcs9ML_lksHq_1MUf-VPcA",
+    href: "/projects/dj-poli-08",
+  },
+  {
+    number: "03",
+    action: "Move",
+    title: "Brand narratives",
+    description: "A clear brand idea translated into cinematic moments made for campaigns, screens and the scroll.",
+    detail: "Concept · Campaign · Social films",
+    poster: "/assets/categories/branding.png",
+    video: "https://drive.google.com/uc?export=download&id=1mVPgO7MDzzLrfn9ma3Jyjz6f4-HeY4iA",
+    href: "/projects/may-28-cut-ii-07",
+  },
+] as const;
+
 export default function Home() {
   return (
     <>
@@ -172,29 +205,68 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="scrub-chapter services-chapter" data-sequence="clipB" aria-label="Alifway Media services">
-          <div className="scrub-stage">
-            <canvas className="sequence-canvas" aria-hidden="true" />
-            <video className="motion-fallback" muted loop playsInline preload="metadata" aria-hidden="true">
-              <source src="/video/clipB.mp4" type="video/mp4" />
-            </video>
-            <img className="sequence-fallback" src="/assets/alifway_media_dark_purple_monogram_transparent.png" alt="" />
-            <div className="cinema-wash" aria-hidden="true" />
-            <div className="services-atmosphere" aria-hidden="true">
-              <span>Direction · Image · Sound · Edit · Motion ·</span>
-              <span>Production · Film · Colour · Story ·</span>
-              <i />
+        <section className="practice-reel" id="practice" data-practice-reel aria-labelledby="practice-heading">
+          <div className="practice-stage">
+            <div className="practice-backdrop" aria-hidden="true">
+              <span data-practice-word>Capture</span>
+              <span data-practice-word>Shape</span>
+              <span data-practice-word>Move</span>
+              <i /><i />
             </div>
-            <div className="services-title">
-              <p className="eyebrow">Image. Rhythm. Meaning.</p>
-              <h2>What we<br />bring to frame.</h2>
+
+            <div className="practice-heading">
+              <p className="eyebrow">Image. Rhythm. Meaning. / 04</p>
+              <h2 id="practice-heading">What we<br />bring to frame.</h2>
             </div>
-            <ol className="service-callouts">
-              <li><i /><span>01</span><strong>Cinematography.</strong></li>
-              <li><i /><span>02</span><strong>Post-production.</strong></li>
-              <li><i /><span>03</span><strong>Brand narratives.</strong></li>
+
+            <div className="practice-viewfinder">
+              <div className="practice-corners" aria-hidden="true"><i /><i /><i /><i /></div>
+              {practiceScenes.map((scene, index) => (
+                <a
+                  className={`practice-scene${index === 0 ? " is-active" : ""}`}
+                  data-practice-scene
+                  href={scene.href}
+                  aria-label={`View ${scene.title} project`}
+                  key={scene.title}
+                >
+                  <img src={scene.poster} alt="" loading={index === 0 ? "eager" : "lazy"} />
+                  <video
+                    muted
+                    loop
+                    playsInline
+                    preload={index === 0 ? "metadata" : "none"}
+                    poster={scene.poster}
+                    aria-hidden="true"
+                  >
+                    <source src={scene.video} type="video/mp4" />
+                  </video>
+                  <span className="practice-scene-shade" aria-hidden="true" />
+                  <span className="practice-scene-label">Alifway project reel · {scene.number}</span>
+                  <span className="practice-scene-open">View film <MediaIcon name="play" /></span>
+                </a>
+              ))}
+            </div>
+
+            <ol className="practice-steps">
+              {practiceScenes.map((scene, index) => (
+                <li className={index === 0 ? "is-active" : ""} data-practice-step key={scene.title}>
+                  <div className="practice-step-head">
+                    <span>{scene.number} / {scene.action}</span>
+                    <strong>{scene.title}</strong>
+                    <i><b /></i>
+                  </div>
+                  <div className="practice-step-copy">
+                    <p>{scene.description}</p>
+                    <small>{scene.detail}</small>
+                  </div>
+                </li>
+              ))}
             </ol>
-            <div className="chapter-index" aria-hidden="true"><span>04</span><span>Our practice</span></div>
+
+            <div className="practice-filmstrip" aria-hidden="true">
+              {categories.map((category) => <img src={categoryAsset[category]} alt="" key={category} />)}
+            </div>
+            <div className="practice-counter" aria-hidden="true"><span id="practice-step-number">01</span><i /><span>03</span></div>
           </div>
         </section>
 

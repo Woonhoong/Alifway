@@ -254,6 +254,58 @@
     window.addEventListener("resize", updateTarget, { passive: true });
   }
 
+  function setupPracticeReel() {
+    const reel = document.querySelector("[data-practice-reel]");
+    if (!reel) return;
+
+    const scenes = [...reel.querySelectorAll("[data-practice-scene]")];
+    const steps = [...reel.querySelectorAll("[data-practice-step]")];
+    const words = [...reel.querySelectorAll("[data-practice-word]")];
+    const counter = reel.querySelector("#practice-step-number");
+    let target = 0;
+    let current = reducedMotion ? 0 : 0;
+    let activeIndex = -1;
+
+    const updateTarget = () => {
+      if (reducedMotion) return;
+      const rect = reel.getBoundingClientRect();
+      const travel = Math.max(1, reel.offsetHeight - window.innerHeight);
+      target = Math.max(0, Math.min(1, -rect.top / travel));
+    };
+
+    const activate = (index) => {
+      const safeIndex = Math.max(0, Math.min(scenes.length - 1, index));
+      if (safeIndex === activeIndex) return;
+      activeIndex = safeIndex;
+
+      scenes.forEach((scene, sceneIndex) => {
+        const active = sceneIndex === safeIndex;
+        scene.classList.toggle("is-active", active);
+        const video = scene.querySelector("video");
+        if (!video) return;
+        if (active && !reducedMotion) video.play().catch(() => {});
+        else video.pause();
+      });
+      steps.forEach((step, stepIndex) => step.classList.toggle("is-active", stepIndex === safeIndex));
+      words.forEach((word, wordIndex) => word.classList.toggle("is-active", wordIndex === safeIndex));
+      if (counter) counter.textContent = String(safeIndex + 1).padStart(2, "0");
+    };
+
+    const render = () => {
+      current += (target - current) * 0.075;
+      reel.style.setProperty("--practice-progress", current.toFixed(4));
+      reel.style.setProperty("--practice-drift", `${((current - 0.5) * -18).toFixed(2)}vw`);
+      activate(Math.min(scenes.length - 1, Math.floor(current * scenes.length)));
+      if (!reducedMotion) requestAnimationFrame(render);
+    };
+
+    updateTarget();
+    activate(0);
+    render();
+    window.addEventListener("scroll", updateTarget, { passive: true });
+    window.addEventListener("resize", updateTarget, { passive: true });
+  }
+
   function setupSmoothScroll() {
     if (reducedMotion || !("Lenis" in window)) return;
     const lenis = new window.Lenis({ duration: 1.15, smoothWheel: true, wheelMultiplier: 0.92 });
@@ -321,6 +373,7 @@
     setupReveals();
     setupManifestoAtmosphere();
     setupMediaJourney();
+    setupPracticeReel();
     setupSmoothScroll();
     setupContact();
 
