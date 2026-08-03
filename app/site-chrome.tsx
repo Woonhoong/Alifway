@@ -1,4 +1,5 @@
 import MediaIcon from "./media-icons";
+import { RuixenGradientFooter } from "@/components/ui/ruixen-gradient-footer";
 
 type HeaderProps = {
   current?: "home" | "projects" | "contact";
@@ -61,7 +62,7 @@ export function ContactTeaser({ label = "The next frame / 06" }: { label?: strin
 }
 
 export function SiteFooter() {
-  return <footer className="site-footer site-footer-expanded">
+  return <RuixenGradientFooter className="site-footer site-footer-expanded">
     <div className="footer-brand">
       <img src="/assets/alifway_media_white_monogram_transparent.png" alt="" />
       <p>Alifway Media<br /><span>Dubai · UAE</span></p>
@@ -86,5 +87,5 @@ export function SiteFooter() {
       <p>Alifway Media © 2026</p>
       <a className="footer-media-link" href="#top">Top <span className="media-nav-symbol" aria-hidden="true"><MediaIcon name="aperture" /></span></a>
     </div>
-  </footer>;
+  </RuixenGradientFooter>;
 }
