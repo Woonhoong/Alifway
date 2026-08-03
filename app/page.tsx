@@ -14,16 +14,29 @@ const categoryIcons: Record<Category, MediaIconName> = {
   "Social Films": "play",
 };
 
-const practiceScenes = [
+type PracticeScene = {
+  number: string;
+  action: string;
+  title: string;
+  description: string;
+  detail: string;
+  fallback: string;
+  frame: string;
+  video?: string;
+  href: string;
+};
+
+const practiceScenes: PracticeScene[] = [
   {
     number: "01",
     action: "Capture",
-    title: "Cinematography",
-    description: "Light, movement and performance composed with intention—before the first frame is ever recorded.",
-    detail: "Direction · Camera · Lighting",
-    fallback: "/assets/categories/food.png",
-    frame: "https://drive.google.com/thumbnail?id=10Iv9ZXhZ1UYPnrnsnpY22g6TrRIEVQgN&sz=w1920",
-    href: "/projects/june-11-06",
+    title: "Brand storytelling",
+    description: "Real people, real spaces and brand moments shaped into a clear social-first narrative.",
+    detail: "Direction · Event film · Social content",
+    fallback: "/video/aw-business-services-home-poster.jpg",
+    frame: "/video/aw-business-services-home-poster.jpg",
+    video: "/video/aw-business-services-home.mp4",
+    href: "/projects/aw-16",
   },
   {
     number: "02",
@@ -45,15 +58,15 @@ const practiceScenes = [
     frame: "https://drive.google.com/thumbnail?id=1mVPgO7MDzzLrfn9ma3Jyjz6f4-HeY4iA&sz=w1920",
     href: "/projects/may-28-cut-ii-07",
   },
-] as const;
+];
 
 const practiceFrameStrip = [
-  "10Iv9ZXhZ1UYPnrnsnpY22g6TrRIEVQgN",
-  "1WFr64g9YJQLcs9ML_lksHq_1MUf-VPcA",
-  "1mVPgO7MDzzLrfn9ma3Jyjz6f4-HeY4iA",
-  "1TcmZs-76S1sl2OdDL8x9HUFbQnnz2d16",
-  "1s3ASKGIOaXBl4JFOF5sYgiXBeqDhauj-",
-  "1aHuqEIeXxWqefo2ndCSkyi-OSLWgewRV",
+  "/video/aw-business-services-home-poster.jpg",
+  "https://drive.google.com/thumbnail?id=1WFr64g9YJQLcs9ML_lksHq_1MUf-VPcA&sz=w640",
+  "https://drive.google.com/thumbnail?id=1mVPgO7MDzzLrfn9ma3Jyjz6f4-HeY4iA&sz=w640",
+  "https://drive.google.com/thumbnail?id=1TcmZs-76S1sl2OdDL8x9HUFbQnnz2d16&sz=w640",
+  "https://drive.google.com/thumbnail?id=1s3ASKGIOaXBl4JFOF5sYgiXBeqDhauj-&sz=w640",
+  "https://drive.google.com/thumbnail?id=1aHuqEIeXxWqefo2ndCSkyi-OSLWgewRV&sz=w640",
 ] as const;
 
 export default function Home() {
@@ -232,14 +245,24 @@ export default function Home() {
               <div className="practice-corners" aria-hidden="true"><i /><i /><i /><i /></div>
               {practiceScenes.map((scene, index) => (
                 <a
-                  className={`practice-scene${index === 0 ? " is-active" : ""}`}
+                  className={`practice-scene${index === 0 ? " is-active" : ""}${scene.video ? " has-local-video" : ""}`}
                   data-practice-scene
                   href={scene.href}
                   aria-label={`View ${scene.title} project`}
                   key={scene.title}
                 >
                   <img className="practice-frame-fallback" src={scene.fallback} alt="" loading={index === 0 ? "eager" : "lazy"} />
-                  <img className="practice-real-frame" src={scene.frame} alt="" loading={index === 0 ? "eager" : "lazy"} referrerPolicy="no-referrer" />
+                  {scene.video ? <video
+                    className="practice-real-frame practice-video"
+                    src={scene.video}
+                    poster={scene.frame}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-hidden="true"
+                  /> : <img className="practice-real-frame" src={scene.frame} alt="" loading={index === 0 ? "eager" : "lazy"} referrerPolicy="no-referrer" />}
                   <span className="practice-scene-shade" aria-hidden="true" />
                   <span className="practice-scene-label">Alifway project reel · {scene.number}</span>
                   <span className="practice-scene-open">View film <MediaIcon name="play" /></span>
@@ -264,7 +287,7 @@ export default function Home() {
             </ol>
 
             <div className="practice-filmstrip" aria-hidden="true">
-              {practiceFrameStrip.map((id) => <img src={`https://drive.google.com/thumbnail?id=${id}&sz=w640`} alt="" loading="lazy" referrerPolicy="no-referrer" key={id} />)}
+              {practiceFrameStrip.map((src) => <img src={src} alt="" loading="lazy" referrerPolicy="no-referrer" key={src} />)}
             </div>
             <div className="practice-counter" aria-hidden="true"><span id="practice-step-number">01</span><i /><span>03</span></div>
           </div>
