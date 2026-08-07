@@ -10,6 +10,18 @@ export default function MotionSystem() {
     root.classList.add("motion-ready");
     requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add("page-entered")));
 
+    const resetPageTransition = () => {
+      clearTimeout(leaveTimer);
+      root.classList.remove("page-leaving");
+      root.classList.add("page-entered");
+    };
+
+    // Browser Back/Forward can restore the page from the bfcache exactly as it
+    // looked when it left. Clear the outgoing transition whenever that happens
+    // so the cached purple overlay can never remain over the restored route.
+    const onPageShow = () => resetPageTransition();
+    const onPopState = () => resetPageTransition();
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -60,10 +72,13 @@ export default function MotionSystem() {
     onScroll();
     addEventListener("scroll", onScroll, { passive: true });
     addEventListener("pointermove", onPointer, { passive: true });
+    addEventListener("pageshow", onPageShow);
+    addEventListener("popstate", onPopState);
     document.addEventListener("click", onClick, true);
     return () => {
       clearTimeout(leaveTimer); observer.disconnect(); mutations.disconnect();
       removeEventListener("scroll", onScroll); removeEventListener("pointermove", onPointer);
+      removeEventListener("pageshow", onPageShow); removeEventListener("popstate", onPopState);
       document.removeEventListener("click", onClick, true);
       root.classList.remove("motion-ready", "page-entered", "page-leaving");
     };

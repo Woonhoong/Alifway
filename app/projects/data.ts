@@ -1,58 +1,58 @@
-export type Category = "Food" | "Automotive" | "Fashion & Beauty" | "Branding" | "Events" | "Social Films";
-export type Project = { title: string; slug: string; filename: string; id: string; year: string; category: Category };
+export type Category = "Restaurants & Food" | "Salon & Beauty" | "Business Services" | "Events & Entertainment";
+export type Project = {
+  title: string;
+  slug: string;
+  behanceId: string;
+  behanceUrl: string;
+  coverUrl: string;
+  playerUrl?: string;
+  playerUrls: string[];
+  imageUrls: string[];
+  year: string;
+  category: Category;
+};
 
-const raw: Omit<Project, "slug">[] = [
-  { title: "Salon Film", filename: "SALON VIDEO-copy.MOV", id: "1eWjypGUZzW0wrG8np8kxxyVic5_FyEc1", year: "2026", category: "Fashion & Beauty" },
-  { title: "Salon Reel", filename: "SALON REEL.MOV", id: "1s3ASKGIOaXBl4JFOF5sYgiXBeqDhauj-", year: "2026", category: "Fashion & Beauty" },
-  { title: "Portrait Study", filename: "E7F68031-A12E-42EB-9563-CF9C11DCD387.MOV", id: "1p9IUgJKRNskz670brSbsEY8cXak_50K4", year: "2026", category: "Fashion & Beauty" },
-  { title: "June / 23", filename: "0623.MP4", id: "1ziUOGE93xBfzRxcj8ynM2HPU_XnMbFyi", year: "2026", category: "Social Films" },
-  { title: "June / 17", filename: "0617.MP4", id: "1TcmZs-76S1sl2OdDL8x9HUFbQnnz2d16", year: "2026", category: "Automotive" },
-  { title: "June / 11", filename: "0611-copy(3).mp4", id: "10Iv9ZXhZ1UYPnrnsnpY22g6TrRIEVQgN", year: "2026", category: "Food" },
-  { title: "May / 28 — Cut II", filename: "0528 (2)-copy-copy.MP4", id: "1mVPgO7MDzzLrfn9ma3Jyjz6f4-HeY4iA", year: "2026", category: "Branding" },
-  { title: "DJ Poli", filename: "dj poli.MP4", id: "1WFr64g9YJQLcs9ML_lksHq_1MUf-VPcA", year: "2026", category: "Events" },
-  { title: "May / 28", filename: "0528.MP4", id: "1FF7JXnIkJe_vG1bA7w2wSHvvilLK7Jqu", year: "2026", category: "Branding" },
-  { title: "May / 21", filename: "0521-copy-copy-copy(1).mp4", id: "1I0tzka047wj4K5hlBha9rQ8CVWVQfCJA", year: "2026", category: "Automotive" },
-  { title: "May / 24", filename: "0524.MP4", id: "1oRzSOZPdiA8TirV4pjzdyuF2MJKmWgGH", year: "2026", category: "Food" },
-  { title: "Thaachi", filename: "Thaachi.mp4", id: "1aHuqEIeXxWqefo2ndCSkyi-OSLWgewRV", year: "2026", category: "Food" },
-  { title: "May / 01", filename: "0501 (3)(2).MP4", id: "1SoXO0NhTbSls9dajrqdoWlUa0kzBuosp", year: "2026", category: "Social Films" },
-  { title: "April / 11", filename: "0411(2).mp4", id: "1pM_t4iFed_7aP387sOmzU4wzcwis-8vh", year: "2026", category: "Automotive" },
-  { title: "December / 30", filename: "1230(1) 2.MP4", id: "1NVjqmtzN1pGPU6GthASekX-iCNVwBcWR", year: "2025", category: "Events" },
-  { title: "AW", filename: "aw.mov", id: "1G4nYwNul9deCK0I8iiKrzDZLuPcEYuNy", year: "2025", category: "Branding" },
-  { title: "December / 26", filename: "1226.mov", id: "1lP8-q1NqPRUYXz4hy-B3Wx1QN_hjxbpL", year: "2025", category: "Events" },
-  { title: "Hanan Karama", filename: "HANAN KARAMA.mov", id: "16AsIR07xXgyq04z4ofwDa0cwG9vLELRv", year: "2025", category: "Fashion & Beauty" },
-  { title: "Hanan Shaah", filename: "HANAN SHAAH(1).mov", id: "1G7oHH6dgLBECUGUdiTy2FpCQJR6fUmLi", year: "2025", category: "Fashion & Beauty" },
-  { title: "Hanan / Cut IV", filename: "HANAN(4).mov", id: "1Vo3jFD6GNYY0LDOV3RX_XsqTFEWbXvNB", year: "2025", category: "Fashion & Beauty" },
-  { title: "Hanan", filename: "HANAN.mov", id: "1oqyVPh-2eNf0ufiilDcvhzOSLUBMMFiz", year: "2025", category: "Fashion & Beauty" },
-  { title: "October / 14", filename: "1014.MOV", id: "1mYn_gyx0C5RIuwFt0DNU0j__TMStrpmx", year: "2025", category: "Events" },
-  { title: "Story", filename: "Story .MP4", id: "1K9vZERz-6YbCNIeOfbl64Jb_3UtdrKqm", year: "2025", category: "Branding" },
-  { title: "September / 19", filename: "0919 (1).MP4", id: "1fKQ7wXhRKa2y7uG2tbAE5TDPpdmVJNu6", year: "2025", category: "Social Films" },
-  { title: "Fafa", filename: "fafa copy.MOV", id: "11MKHLGelMo0np2cwIoXQ5-85HWiLk7JG", year: "2025", category: "Fashion & Beauty" },
-  { title: "August / 04", filename: "0804(1).MOV", id: "1ZN9mq3Z5Gumy0dzk0g_cQtAZn4WK8QRe", year: "2025", category: "Social Films" },
+type RawProject = Omit<Project, "slug" | "playerUrl" | "playerUrls" | "imageUrls"> & { videoIds?: string[]; imageIds?: string[] };
+
+const raw: RawProject[] = [
+  { title: "Celebrities", behanceId: "253631155", behanceUrl: "https://www.behance.net/gallery/253631155/Celebrities", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/fe478a253631155.Y3JvcCwxMTcwLDkxNSwwLDEyMQ.jpg", videoIds: ["CdKob4Bk73S", "-tFCbhr7Ef3", "M_s5DHx6gqD", "BBCaDHwg4wy", "KbmihEeF5JE", "Esc3pE9QKGX", "M2aj-D6_3tm"], year: "2026", category: "Events & Entertainment" },
+  { title: "Restaurant", behanceId: "253636989", behanceUrl: "https://www.behance.net/gallery/253636989/RESTAURANT", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/cdc601253636989.Y3JvcCwxMzQxLDEwNDksMTY5LDc4MA.jpeg", videoIds: ["MUFyZILe5Xs", "DaWxBaHIsY7", "KxRdVHghbM9", "9imhamKQeZp", "Hc28CtVzbD8", "89m-CCy8m-D", "TNXJGv4Q9fK", "Vvu5Tb78-qZ", "DGxv6bCeJIn", "Qdk6mJ3RGwm", "4W2uQbsu9Iq", "UztX-twyykx", "CDavu56uU5M", "Kdt97TBPW93", "3tu9PJNzWdV", "N_zDQvHWR9C", "VF6KMSUgRb5", "USN5BD8MXSR", "7qXciPnjdZd", "DmDiswr8t-e", "SGA3m-PEBir", "6YY6k2kN4H7", "B42zSDMB7gQ", "FmEt5a3TeMb", "HmQbH--sNK4", "573G-uErbhq", "DNZp8vt_75F", "9RP5M3xVQAS", "GEXWVwHN5he", "MihoNLJEVpq", "TWdtbYthFUF"], year: "2026", category: "Restaurants & Food" },
+  { title: "Salon", behanceId: "253632867", behanceUrl: "https://www.behance.net/gallery/253632867/salon", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/eeece3253632867.Y3JvcCwxMTcwLDkxNSwwLDY0NQ.png", videoIds: ["CL3PX2pHbPp", "LuLGpdLP3Lj", "AtrWEz5i2fV", "9hgPSLu7mgr", "5T8rCt5Ze7p", "HvL-Bar5C5A"], year: "2026", category: "Salon & Beauty" },
+  { title: "Falooda Club", behanceId: "253635517", behanceUrl: "https://www.behance.net/gallery/253635517/Falooda-Club", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/6a8c80253635517.Y3JvcCwxNDAwLDEwOTUsMCww.jpg", imageIds: ["066dea253635517.6a6e09837846c.jpg","5d9573253635517.6a6e09837896a.jpg","34a2b8253635517.6a6e098378e14.jpg","46abb9253635517.6a6e0983e2bb9.jpg","d51cdf253635517.6a6e0983e3067.jpg","4e5bbd253635517.6a6e0983e2685.jpg","e562be253635517.6a6e09845c32f.jpg","7bf671253635517.6a6e09845b29c.jpg","fd202c253635517.6a6e09845bad9.jpg","a90165253635517.6a6e0984ca518.jpg","70e22a253635517.6a6e0984c9c0b.jpg","4ecb1f253635517.6a6e0984cad48.jpg","cfd920253635517.6a6e09853fdf9.jpg","c413b2253635517.6a6e0985403f1.jpg","ee86ca253635517.6a6e09853f4cd.jpg","aa3fa5253635517.6a6e09859b885.jpg","c6190a253635517.6a6e09859c496.jpg","6c344d253635517.6a6e09859be9a.jpg","2bcb6c253635517.6a6e09860aa45.jpg","181f7a253635517.6a6e098609f71.jpg","f6ddc5253635517.6a6e09860a4b6.jpg","94406f253635517.6a6e09866acfd.jpg","cf91d7253635517.6a6e09866b9c6.jpg","e813d6253635517.6a6e09866b390.jpg","24d10a253635517.6a6e0986cccf2.jpg","910ac6253635517.6a6e0986cd581.jpg","756efb253635517.6a6e0986cd180.jpg","c62589253635517.6a6e09873291a.jpg","d2dc90253635517.6a6e098732dc8.jpg","f72778253635517.6a6e09873247e.jpg","cd4049253635517.6a6e09878d6c8.jpg","afc4a4253635517.6a6e09878dee6.jpg","66505b253635517.6a6e09878daea.jpg","c2d4fa253635517.6a6e0987ee2d1.jpg","ae3c8e253635517.6a6e0987edac6.jpg"], year: "2026", category: "Restaurants & Food" },
+  { title: "Hotgrill", behanceId: "253635615", behanceUrl: "https://www.behance.net/gallery/253635615/Hotgrill", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/4fff22253635615.Y3JvcCwxNjgwLDEzMTQsMCwzNTM.jpg", imageIds: ["ddf9e1253635615.6a6e0a210be79.jpg","ccad0e253635615.6a6e0a210c383.jpg","b7e98c253635615.6a6e0a210c870.jpg","a3660d253635615.6a6e0a21779a6.jpg","d768b2253635615.6a6e0a2177eef.jpg","626bc6253635615.6a6e0a21783d0.jpg","18ddbf253635615.6a6e0a21edaa7.jpg","0e8ac5253635615.6a6e0a21ee1a1.jpg","770cf7253635615.6a6e0a21ee915.jpg","8597cc253635615.6a6e0a226c2da.jpg","45255b253635615.6a6e0a226bef8.jpg","3c0467253635615.6a6e0a226bab6.jpg","3a9d83253635615.6a6e0a22dd98c.jpg","762e2c253635615.6a6e0a22de6e1.jpg","0214c5253635615.6a6e0a22de03c.jpg","62eb0a253635615.6a6e0a2349a93.jpg","4ce4b8253635615.6a6e0a2349244.jpg","5d29a7253635615.6a6e0a23496ba.jpg"], year: "2026", category: "Restaurants & Food" },
+  { title: "Alifway Business Services", behanceId: "253633567", behanceUrl: "https://www.behance.net/gallery/253633567/Alifway-Business-Services", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/9f79fa253633567.Y3JvcCwxNDAwLDEwOTUsMCww.jpg", imageIds: ["ae8b9c253633567.6a6dfd3ca3a74.jpg","6c8e3b253633567.6a6dfd3ca4356.jpg","8509fe253633567.6a6dfd3ca3ee6.jpg","f6d1e3253633567.6a6dfd3d3792f.jpg","f6fd34253633567.6a6dfd3d3801d.jpg","c1bab4253633567.6a6dfd3d38663.jpg","cf37ea253633567.6a6dfd3db4d13.jpg","6e5ff9253633567.6a6dfd3db512c.jpg","5b3dcd253633567.6a6dfd3db4761.jpg","0c1f19253633567.6a6dfd3e37925.jpg","a79098253633567.6a6dfd3e37fed.jpg","32e00b253633567.6a6dfd3e385bd.jpg","98a689253633567.6a6dfd3eb317b.jpg","392e43253633567.6a6dfd3eb3573.jpg","7c0224253633567.6a6dfd3eb2d32.jpg","e0bda9253633567.6a6dfd3f344de.jpg","cefdfc253633567.6a6dfd3f337dc.jpg","666d7a253633567.6a6dfd3f33e90.jpg","182750253633567.6a6dfd3fa42ff.jpg","e6c1e6253633567.6a6dfd3fa3c82.jpg","73aa55253633567.6a6dfd3fa35d1.jpg","7b5d1d253633567.6a6dfd4017b48.jpg","add975253633567.6a6dfd401868f.jpg","67886c253633567.6a6dfd4018133.jpg"], year: "2026", category: "Business Services" },
+  { title: "Inauguration Video", behanceId: "253633191", behanceUrl: "https://www.behance.net/gallery/253633191/INAUGURATION-VIDEO", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/b722c3253633191.Y3JvcCw5ODMsNzY5LDE3Nyw1MjM.png", videoIds: ["86I2koCB2pG", "Q2bm4vkviZM", "LPh5-QdESEJ", "GypbTInJQDj", "Je8fAZ43Uv9", "53qivEWBgHA", "ArPBEe8P3Ns"], year: "2026", category: "Events & Entertainment" },
+  { title: "Bait Al Kunafa", behanceId: "253637413", behanceUrl: "https://www.behance.net/gallery/253637413/Bait-Al-Kunafa", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/29442f253637413.Y3JvcCwxNDAwLDEwOTUsMCwzMjk.jpg", imageIds: ["8f8977253637413.6a6e16b1443a9.jpg","472f79253637413.6a6e16b144ecb.jpg","6c2046253637413.6a6e16b1448e7.jpg","e5fc2a253637413.6a6e16b1b163d.jpg","805b49253637413.6a6e16b1b1e28.jpg","4400e7253637413.6a6e16b1b1a86.jpg","bdfc3c253637413.6a6e16b236949.jpg","380969253637413.6a6e16b236325.jpg","b400b0253637413.6a6e16b236f71.jpg","648c8d253637413.6a6e16b2b6b83.jpg","22ce2e253637413.6a6e16b2b65c2.jpg","be191a253637413.6a6e16b2b5f4e.jpg","5bca91253637413.6a6e16b32b225.jpg","d69504253637413.6a6e16b32a7b3.jpg","54d833253637413.6a6e16b32ace6.jpg","a79d38253637413.6a6e16b3a9280.jpg","68a19f253637413.6a6e16b3a96e5.jpg","89b046253637413.6a6e16b3a9b42.jpg","9513c9253637413.6a6e16b424342.jpg","eb8440253637413.6a6e16b423961.jpg","e3faf7253637413.6a6e16b423e6c.jpg"], year: "2026", category: "Restaurants & Food" },
+  { title: "AW Business Services", behanceId: "253635997", behanceUrl: "https://www.behance.net/gallery/253635997/AW-BUSINESS-SERVICES", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/947c9b253635997.Y3JvcCw1MTEzLDQwMDAsMjc4LDA.jpg", videoIds: ["2Tek_CfJNgj", "KV-ERtDgm2C", "2JRCxqmHjHm", "NJcUefipAy4", "MJ9y2JqLZm3", "RW5m7SUPvHP", "7pIc7CcWSWE", "Etca6QHuIc5", "KjjpKXSLotL", "4dRcoPArgZe", "CTIG6AJIP89", "AMA635LQoWA", "EBY3yqkEik7", "7QgngSmVEvK", "NU2sr49wyfE", "AsxPm3MKXfs", "A9skY874ZAg"], year: "2026", category: "Business Services" },
+  { title: "AW Business Services — II", behanceId: "253633403", behanceUrl: "https://www.behance.net/gallery/253633403/AW-Business-Servics", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/9b5111253633403.Y3JvcCwxNDAwLDEwOTUsMCww.jpg", imageIds: ["a34a74253633403.6a6dfc2a47108.jpg","7768db253633403.6a6dfc2a477fd.jpg","1b85f5253633403.6a6dfc2a474b1.jpg","871cce253633403.6a6dfc2ace23d.jpg","d54ae5253633403.6a6dfc2acdda4.jpg","b57236253633403.6a6dfc2acd863.jpg","077386253633403.6a6dfc2b52e9c.jpg","f45dc2253633403.6a6dfc2b529be.jpg","9b02a7253633403.6a6dfc2b532ec.jpg","6de930253633403.6a6dfc2bd4d89.jpg","4cc555253633403.6a6dfc2bd54dc.jpg","917faf253633403.6a6dfc2bd5176.jpg","2739ff253633403.6a6dfc2c4fa81.jpg","b0e288253633403.6a6dfc2c50139.jpg","b99066253633403.6a6dfc2c4f38a.jpg","06af92253633403.6a6dfc2ccf802.jpg","da84f2253633403.6a6dfc2ccfe75.jpg","29e6d3253633403.6a6dfc2cd04d9.jpg","86d385253633403.6a6dfc2d4f470.jpg","58ec2b253633403.6a6dfc2d4eff5.jpg","827d33253633403.6a6dfc2d4ea8e.jpg","0f8bd7253633403.6a6dfc2dc86c3.jpg","78735f253633403.6a6dfc2dc8d10.jpg","c3895d253633403.6a6dfc2dc92ce.jpg","138422253633403.6a6dfc2e432f6.jpg","eeb928253633403.6a6dfc2e43af2.jpg","426a6b253633403.6a6dfc2e4372f.jpg","35d605253633403.6a6dfc2eb2f7f.jpg","9c9bd4253633403.6a6dfc2eb2a1d.jpg","6bd5d8253633403.6a6dfc2eb2492.jpg"], year: "2026", category: "Business Services" },
+  { title: "DJ", behanceId: "253634979", behanceUrl: "https://www.behance.net/gallery/253634979/dj", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/e41e9e253634979.Y3JvcCwxMTcwLDkxNSwwLDcxMg.png", videoIds: ["Gni5otjFrxX", "ABEYkPMarHH", "Im4ScXxYjrY", "-5kQxitH4ap", "QrXW7JWf3pt", "9q2Md95-Lb_", "Cmx5NHHzbHg"], year: "2026", category: "Events & Entertainment" },
+  { title: "Work", behanceId: "253635155", behanceUrl: "https://www.behance.net/gallery/253635155/WORK", coverUrl: "https://mir-s3-cdn-cf.behance.net/projects/808/24553d253635155.Y3JvcCwxMTcwLDkxNSwwLDMxMg.jpg", videoIds: ["GvVpCgUtfTd", "JfRrwVSdb9c", "J2u-XSzhPHs", "3wRkBKz_VM7", "UWo4nJfreWD", "CfM5GP4iaC9", "9rUcXwhkZpf", "6qDs2bVxi34", "KEKj3JaXe-f", "-Tx-wPpnxCa", "Kva9XafDTpU"], year: "2026", category: "Events & Entertainment" },
 ];
+
 const slugify = (value: string) => value.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-export const projects: Project[] = raw.map((project, index) => ({ ...project, slug: `${slugify(project.title)}-${String(index + 1).padStart(2, "0")}` }));
-export const categories: Category[] = ["Food", "Automotive", "Fashion & Beauty", "Branding", "Events", "Social Films"];
+const ccvPlayer = (id: string) => `https://www-ccv.adobe.io/v1/player/ccv/${id}/embed?api_key=behance1&bgcolor=%23191919`;
+const behanceImage = (id: string) => `https://mir-s3-cdn-cf.behance.net/project_modules/max_1200_webp/${id}`;
+export const projects: Project[] = raw.map(({ videoIds = [], imageIds = [], ...project }, index) => {
+  const playerUrls = videoIds.map(ccvPlayer);
+  const imageUrls = imageIds.map(behanceImage);
+  return { ...project, playerUrls, imageUrls, playerUrl: playerUrls[0], slug: `${slugify(project.title)}-${String(index + 1).padStart(2, "0")}` };
+});
+export const categories: Category[] = ["Restaurants & Food", "Salon & Beauty", "Business Services", "Events & Entertainment"];
 export const categoryAsset: Record<Category, string> = {
-  Food: "/assets/categories/food.png",
-  Automotive: "/assets/categories/automotive.png",
-  "Fashion & Beauty": "/assets/categories/fashion-beauty.png",
-  Branding: "/assets/categories/branding.png",
-  Events: "/assets/categories/events.png",
-  "Social Films": "/assets/categories/social-films.png",
+  "Restaurants & Food": "/assets/categories/food.png",
+  "Salon & Beauty": "/assets/categories/fashion-beauty.png",
+  "Business Services": "/assets/categories/branding.png",
+  "Events & Entertainment": "/assets/categories/events.png",
 };
 export const categoryHeadline: Record<Category, string> = {
-  Food: "Stories You Can Taste",
-  Automotive: "Motion, Engineered",
-  "Fashion & Beauty": "Form. Texture. Presence.",
-  Branding: "Identity in Motion",
-  Events: "Moments, Magnified",
-  "Social Films": "Built for the Scroll",
+  "Restaurants & Food": "Stories You Can Taste",
+  "Salon & Beauty": "Form. Texture. Presence.",
+  "Business Services": "Identity in Motion",
+  "Events & Entertainment": "Moments, Magnified",
 };
 export const projectStatement: Record<Category, string> = {
-  Food: "Texture, appetite and atmosphere shaped into a precise visual rhythm.",
-  Automotive: "Machine, movement and road presence directed through cinematic detail.",
-  "Fashion & Beauty": "Character, light and gesture composed with an editorial point of view.",
-  Branding: "A brand idea translated into a moving visual world with clarity and recall.",
-  Events: "Live energy captured with pace, presence and a strong sense of place.",
-  "Social Films": "Short-form stories cut for immediate impact without losing craft.",
+  "Restaurants & Food": "Food and hospitality photography and films that make every dish, space and dining experience feel irresistible.",
+  "Salon & Beauty": "Beauty photography and films designed to make services, style and personality look polished, premium and memorable.",
+  "Business Services": "Brand films, corporate photography and social content that help businesses look clear, credible and distinctive.",
+  "Events & Entertainment": "Cinematic event coverage that captures the people, atmosphere and energy clients want audiences to remember.",
 };

@@ -72,11 +72,15 @@ export function SiteFooter() {
       <span>Begin a conversation</span>
       <a href="/contact">Start your project</a>
       <a className="footer-instagram" href="https://www.instagram.com/alifwaymedia.ae/" target="_blank" rel="noreferrer">@alifwaymedia.ae</a>
+      <div className="footer-contact-meta">
+        <a className="footer-phone" href="tel:+971522662436"><MediaIcon name="phone" /><span>+971 52 266 2436</span></a>
+        <a className="footer-address" href="https://maps.app.goo.gl/pASqu4J3zBVR5DWd6?g_st=ic" target="_blank" rel="noreferrer">RKM Building - 106 - near Al Qiyadha Metro - Abu Hail - Dubai</a>
+      </div>
     </div>
 
     <div className="footer-socials" aria-label="Alifway Media social links">
       <a href="https://www.instagram.com/alifwaymedia.ae/" target="_blank" rel="noreferrer" aria-label="Instagram"><SocialIcon name="instagram" /></a>
-      <span className="is-pending" role="img" aria-label="WhatsApp link awaiting business number" title="Add the Alifway business WhatsApp number to activate"><SocialIcon name="whatsapp" /></span>
+      <a href="https://wa.me/971522662436" target="_blank" rel="noreferrer" aria-label="WhatsApp +971 52 266 2436"><SocialIcon name="whatsapp" /></a>
       <span className="is-pending" role="img" aria-label="LinkedIn profile link awaiting URL" title="Add the Alifway LinkedIn URL to activate"><SocialIcon name="linkedin" /></span>
       <span className="is-pending" role="img" aria-label="X profile link awaiting URL" title="Add the Alifway X URL to activate"><SocialIcon name="x" /></span>
       <span className="is-pending" role="img" aria-label="TikTok profile link awaiting URL" title="Add the Alifway TikTok URL to activate"><SocialIcon name="tiktok" /></span>

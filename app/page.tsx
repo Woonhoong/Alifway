@@ -1,18 +1,9 @@
 /* eslint-disable @next/next/no-html-link-for-pages -- native anchors avoid a Vinext hydration fault in the cinematic home shell */
 import ClientScripts from "./client-scripts";
 import type { CSSProperties } from "react";
-import MediaIcon, { type MediaIconName } from "./media-icons";
-import { categories, categoryAsset, categoryHeadline, projects, type Category } from "./projects/data";
+import MediaIcon from "./media-icons";
+import { projects } from "./projects/data";
 import { ContactTeaser, SiteFooter, SiteHeader } from "./site-chrome";
-
-const categoryIcons: Record<Category, MediaIconName> = {
-  Food: "camera",
-  Automotive: "film",
-  "Fashion & Beauty": "aperture",
-  Branding: "clapper",
-  Events: "mic",
-  "Social Films": "play",
-};
 
 type PracticeScene = {
   number: string;
@@ -21,53 +12,32 @@ type PracticeScene = {
   description: string;
   detail: string;
   fallback: string;
-  frame: string;
-  video?: string;
-  href: string;
+  playerUrl: string;
 };
 
 const practiceScenes: PracticeScene[] = [
   {
     number: "01",
     action: "Capture",
-    title: "Brand storytelling",
-    description: "Real people, real spaces and brand moments shaped into a clear social-first narrative.",
-    detail: "Direction · Event film · Social content",
-    fallback: "/video/aw-business-services-home-poster.jpg",
-    frame: "/video/aw-business-services-home-poster.jpg",
-    video: "/video/aw-business-services-home.mp4",
-    href: "/projects/aw-16",
-  },
-  {
-    number: "02",
-    action: "Shape",
-    title: "Post-production",
-    description: "Picture, colour and sound refined into a rhythm that holds attention and carries the story.",
-    detail: "Edit · Colour · Sound design",
+    title: "Celebrity stories",
+    description: "People, presence and performance captured with a cinematic point of view.",
+    detail: "Celebrity · Direction · Film",
     fallback: "/assets/categories/events.png",
-    frame: "https://drive.google.com/thumbnail?id=1WFr64g9YJQLcs9ML_lksHq_1MUf-VPcA&sz=w1920",
-    href: "/projects/dj-poli-08",
-  },
-  {
-    number: "03",
-    action: "Move",
-    title: "Brand narratives",
-    description: "A clear brand idea translated into cinematic moments made for campaigns, screens and the scroll.",
-    detail: "Concept · Campaign · Social films",
-    fallback: "/assets/categories/branding.png",
-    frame: "https://drive.google.com/thumbnail?id=1mVPgO7MDzzLrfn9ma3Jyjz6f4-HeY4iA&sz=w1920",
-    href: "/projects/may-28-cut-ii-07",
+    playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/CdKob4Bk73S/embed?api_key=behance1&bgcolor=%23191919",
   },
 ];
 
-const practiceFrameStrip = [
-  "/video/aw-business-services-home-poster.jpg",
-  "https://drive.google.com/thumbnail?id=1WFr64g9YJQLcs9ML_lksHq_1MUf-VPcA&sz=w640",
-  "https://drive.google.com/thumbnail?id=1mVPgO7MDzzLrfn9ma3Jyjz6f4-HeY4iA&sz=w640",
-  "https://drive.google.com/thumbnail?id=1TcmZs-76S1sl2OdDL8x9HUFbQnnz2d16&sz=w640",
-  "https://drive.google.com/thumbnail?id=1s3ASKGIOaXBl4JFOF5sYgiXBeqDhauj-&sz=w640",
-  "https://drive.google.com/thumbnail?id=1aHuqEIeXxWqefo2ndCSkyi-OSLWgewRV&sz=w640",
+const celebrityVideos = [
+  { number: "04", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/BBCaDHwg4wy/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
+  { number: "01", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/CdKob4Bk73S/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
+  { number: "02", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/-tFCbhr7Ef3/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
+  { number: "03", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/M_s5DHx6gqD/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
+  { number: "05", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/KbmihEeF5JE/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
+  { number: "06", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/Esc3pE9QKGX/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
+  { number: "07", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/M2aj-D6_3tm/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
 ] as const;
+
+const homeVideoProjects = projects.filter((project) => project.playerUrl && project.title !== "DJ");
 
 export default function Home() {
   return (
@@ -230,9 +200,7 @@ export default function Home() {
         <section className="practice-reel" id="practice" data-practice-reel aria-labelledby="practice-heading">
           <div className="practice-stage">
             <div className="practice-backdrop" aria-hidden="true">
-              <span data-practice-word>Capture</span>
-              <span data-practice-word>Shape</span>
-              <span data-practice-word>Move</span>
+              <span data-practice-word>Celebrity</span>
               <i /><i />
             </div>
 
@@ -243,31 +211,20 @@ export default function Home() {
 
             <div className="practice-viewfinder">
               <div className="practice-corners" aria-hidden="true"><i /><i /><i /><i /></div>
-              {practiceScenes.map((scene, index) => (
-                <a
-                  className={`practice-scene${index === 0 ? " is-active" : ""}${scene.video ? " has-local-video" : ""}`}
-                  data-practice-scene
-                  href={scene.href}
-                  aria-label={`View ${scene.title} project`}
-                  key={scene.title}
-                >
-                  <img className="practice-frame-fallback" src={scene.fallback} alt="" loading={index === 0 ? "eager" : "lazy"} />
-                  {scene.video ? <video
-                    className="practice-real-frame practice-video"
-                    src={scene.video}
-                    poster={scene.frame}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    aria-hidden="true"
-                  /> : <img className="practice-real-frame" src={scene.frame} alt="" loading={index === 0 ? "eager" : "lazy"} referrerPolicy="no-referrer" />}
-                  <span className="practice-scene-shade" aria-hidden="true" />
-                  <span className="practice-scene-label">Alifway project reel · {scene.number}</span>
-                  <span className="practice-scene-open">View film <MediaIcon name="play" /></span>
-                </a>
-              ))}
+              <div className="practice-celebrity-strip" role="list" aria-label="Seven Celebrity films from Alifway Media on Behance">
+                {celebrityVideos.map((film, index) => (
+                  <div className="practice-celebrity-film" role="listitem" key={film.playerUrl}>
+                  <iframe
+                    src={film.playerUrl}
+                    title={`Celebrity film ${film.number} — Alifway Media on Behance`}
+                    allow="autoplay; fullscreen; picture-in-picture"
+                    allowFullScreen
+                    loading={index === 0 ? "eager" : "lazy"}
+                  />
+                    <span>Celebrity film · {film.number}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <ol className="practice-steps">
@@ -286,10 +243,7 @@ export default function Home() {
               ))}
             </ol>
 
-            <div className="practice-filmstrip" aria-hidden="true">
-              {practiceFrameStrip.map((src) => <img src={src} alt="" loading="lazy" referrerPolicy="no-referrer" key={src} />)}
-            </div>
-            <div className="practice-counter" aria-hidden="true"><span id="practice-step-number">01</span><i /><span>03</span></div>
+            <div className="practice-counter" aria-hidden="true"><span id="practice-step-number">01</span><i /><span>07</span></div>
           </div>
         </section>
 
@@ -299,32 +253,34 @@ export default function Home() {
             <h2 id="work-heading">A living index<br />of moving ideas.</h2>
           </div>
 
-          <div className="home-category-grid" role="list">
-            {categories.map((category, index) => {
-              const count = projects.filter((project) => project.category === category).length;
-              return <a
-                className="home-category-card"
-                role="listitem"
-                href={`/projects?category=${encodeURIComponent(category)}#category-films`}
-                data-motion="project"
-                style={{ "--motion-order": index % 3 } as CSSProperties}
-                key={category}
-              >
-                <img src={categoryAsset[category]} alt="" loading="lazy" />
-                <span className="home-category-shade" aria-hidden="true" />
-                <span className="home-category-number">0{index + 1}</span>
-                <span className="home-category-copy"><small>{categoryHeadline[category]}</small><strong>{category}</strong></span>
-                <span className="home-category-meta">{count} films <i className="media-nav-symbol" aria-hidden="true"><MediaIcon name={categoryIcons[category]} /></i></span>
-              </a>;
-            })}
+          <div className="home-category-grid home-video-grid" role="list" aria-label="Selected Behance films">
+            {homeVideoProjects.map((project, index) => <article
+              className="home-category-card home-video-card"
+              role="listitem"
+              data-motion="project"
+              style={{ "--motion-order": index % 3 } as CSSProperties}
+              key={project.behanceId}
+            >
+              <iframe
+                src={project.playerUrl}
+                title={`${project.title} — Alifway Media on Behance`}
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                loading="lazy"
+              />
+              <span className="home-category-shade" aria-hidden="true" />
+              <span className="home-category-number">0{index + 1}</span>
+              <span className="home-video-title" aria-hidden="true">{project.title}</span>
+              <a className="home-category-meta" href={`/projects/${project.slug}`} aria-label={`Open ${project.title} project page`}>Project <i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="play" /></i></a>
+            </article>)}
           </div>
 
           <div className="social-portals" data-motion="clip">
             <a href="https://www.behance.net/alifwaymedia" target="_blank" rel="noreferrer">
-              <span>Behance / Full portfolio</span><strong>Explore the<br />Archive</strong><i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="film" /></i>
+              <span>Portfolio / More work</span><strong>See more<br />Projects</strong><i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="film" /></i>
             </a>
             <a href="https://www.instagram.com/alifwaymedia.ae/" target="_blank" rel="noreferrer">
-              <span>Instagram / Daily practice</span><strong>Follow our<br />Vision</strong><i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="camera" /></i>
+              <span>Instagram / New work</span><strong>Follow our<br />Vision</strong><i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="camera" /></i>
             </a>
           </div>
         </section>

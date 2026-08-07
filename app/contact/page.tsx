@@ -34,9 +34,10 @@ export default function ContactPage() {
       <section className="contact contact-page-form" aria-labelledby="brief-heading" data-motion="rise">
         <div className="contact-aside">
           <p className="section-kicker">Project brief / 01</p>
-          <p>Share the essentials. Your completed brief will be copied and Alifway Media’s Instagram will open so you can send it directly.</p>
+          <p>Tell us what you are planning, when you need it and what you want the work to achieve. We will use it to shape the right creative and production approach.</p>
           <a href="https://www.instagram.com/alifwaymedia.ae/" target="_blank" rel="noreferrer">Instagram<br /><strong>@alifwaymedia.ae</strong></a>
-          <span>Based in Dubai, UAE</span>
+          <a className="contact-phone" href="tel:+971522662436"><i aria-hidden="true"><MediaIcon name="phone" /></i><span>Phone / WhatsApp<br /><strong>+971 52 266 2436</strong></span></a>
+          <a className="contact-location" href="https://maps.app.goo.gl/pASqu4J3zBVR5DWd6?g_st=ic" target="_blank" rel="noreferrer">Location<br /><strong>RKM Building - 106 - near Al Qiyadha Metro - Abu Hail - Dubai</strong></a>
         </div>
 
         <div className="contact-form-column">
@@ -92,7 +93,7 @@ export default function ContactPage() {
               </label>
             </div>
             <div className="brief-submit">
-              <p>Your details stay on your device until you choose where to send the copied brief.</p>
+              <p>Share as much as you know now. We can help define the creative direction, scope and next steps together.</p>
               <button type="submit"><span>Prepare project brief</span><i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="clapper" /></i></button>
             </div>
             <p className="form-status" id="form-status" aria-live="polite" />

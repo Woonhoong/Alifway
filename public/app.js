@@ -302,6 +302,34 @@
     window.addEventListener("resize", updateTarget, { passive: true });
   }
 
+  function setupCelebrityStrip() {
+    const strip = document.querySelector(".practice-celebrity-strip");
+    if (!strip || reducedMotion) return;
+    const films = [...strip.querySelectorAll(".practice-celebrity-film")];
+    if (films.length < 2) return;
+    let index = 0;
+    let timer = 0;
+
+    const visibleCount = () => window.innerWidth <= 767 ? 1 : 3;
+    const advance = () => {
+      const lastStart = Math.max(0, films.length - visibleCount());
+      index = index >= lastStart ? 0 : index + 1;
+      strip.scrollTo({ left: films[index].offsetLeft, behavior: "smooth" });
+    };
+    const stop = () => { if (timer) window.clearInterval(timer); timer = 0; };
+    const start = () => { stop(); timer = window.setInterval(advance, 4800); };
+
+    strip.addEventListener("mouseenter", stop);
+    strip.addEventListener("mouseleave", start);
+    strip.addEventListener("touchstart", stop, { passive: true });
+    strip.addEventListener("touchend", start, { passive: true });
+    window.addEventListener("resize", () => {
+      index = Math.min(index, Math.max(0, films.length - visibleCount()));
+      strip.scrollTo({ left: films[index].offsetLeft, behavior: "auto" });
+    }, { passive: true });
+    start();
+  }
+
   function setupSmoothScroll() {
     if (reducedMotion || !("Lenis" in window)) return;
     const lenis = new window.Lenis({ duration: 1.15, smoothWheel: true, wheelMultiplier: 0.92 });
@@ -370,6 +398,7 @@
     setupManifestoAtmosphere();
     setupMediaJourney();
     setupPracticeReel();
+    setupCelebrityStrip();
     setupSmoothScroll();
     setupContact();
 
