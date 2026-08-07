@@ -4,6 +4,12 @@ import type { CSSProperties } from "react";
 import MediaIcon from "./media-icons";
 import { projects } from "./projects/data";
 import { ContactTeaser, SiteFooter, SiteHeader } from "./site-chrome";
+import {
+  TextStaggerHover,
+  HoverSliderImage,
+  HoverSliderImageWrap,
+} from "@/components/ui/animated-slideshow";
+
 
 type PracticeScene = {
   number: string;
@@ -254,25 +260,27 @@ export default function Home() {
           </div>
 
           <div className="home-category-grid home-video-grid" role="list" aria-label="Selected Behance films">
-            {homeVideoProjects.map((project, index) => <article
-              className="home-category-card home-video-card"
-              role="listitem"
-              data-motion="project"
-              style={{ "--motion-order": index % 3 } as CSSProperties}
-              key={project.behanceId}
-            >
-              <iframe
-                src={project.playerUrl}
-                title={`${project.title} — Alifway Media on Behance`}
-                allow="autoplay; fullscreen; picture-in-picture"
-                allowFullScreen
-                loading="lazy"
-              />
-              <span className="home-category-shade" aria-hidden="true" />
-              <span className="home-category-number">0{index + 1}</span>
-              <span className="home-video-title" aria-hidden="true">{project.title}</span>
-              <a className="home-category-meta" href={`/projects/${project.slug}`} aria-label={`Open ${project.title} project page`}>Project <i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="play" /></i></a>
-            </article>)}
+            {homeVideoProjects.map((project, index) => (
+              <article
+                className="home-category-card home-video-card"
+                role="listitem"
+                data-motion="project"
+                style={{ "--motion-order": index % 3 } as CSSProperties}
+                key={project.behanceId}
+              >
+                <iframe
+                  src={project.playerUrl}
+                  title={`${project.title} — Alifway Media on Behance`}
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                />
+                <span className="home-category-shade" aria-hidden="true" />
+                <span className="home-category-number">0{index + 1}</span>
+                <span className="home-video-title" aria-hidden="true">{project.title}</span>
+                <a className="home-category-meta" href={`/projects/${project.slug}`} aria-label={`Open ${project.title} project page`}>Project <i className="media-nav-symbol" aria-hidden="true"><MediaIcon name="play" /></i></a>
+              </article>
+            ))}
           </div>
 
           <div className="social-portals" data-motion="clip">
