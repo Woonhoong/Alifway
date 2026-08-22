@@ -34,12 +34,13 @@ const practiceScenes: PracticeScene[] = [
 ];
 
 const celebrityVideos = [
-  { number: "04", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/BBCaDHwg4wy/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
   { number: "01", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/CdKob4Bk73S/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
   { number: "02", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/-tFCbhr7Ef3/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
+  { number: "04", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/BBCaDHwg4wy/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
   { number: "07", playerUrl: "https://www-ccv.adobe.io/v1/player/ccv/M2aj-D6_3tm/embed?api_key=behance1&bgcolor=%23191919&background=true&controls=false&autoplay=true&muted=true&loop=true" },
 ] as const;
 
+const celebrityProject = projects.find((project) => project.behanceId === "253631155")!;
 const homeVideoProjects = projects.filter((project) => project.playerUrl && project.title !== "DJ");
 
 export default function Home() {
@@ -214,7 +215,18 @@ export default function Home() {
 
             <div className="practice-viewfinder">
               <div className="practice-corners" aria-hidden="true"><i /><i /><i /><i /></div>
-              <div className="practice-celebrity-strip" role="list" aria-label="Four Celebrity films from Alifway Media on Behance">
+              <div className="practice-celebrity-strip" role="list" aria-label="Celebrities project cover and four films from Alifway Media on Behance">
+                <a
+                  className="practice-celebrity-film practice-celebrity-project"
+                  role="listitem"
+                  href={celebrityProject.behanceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Open the Celebrities project on Behance"
+                >
+                  <img src={celebrityProject.coverUrl} alt="Celebrities — Alifway Media" />
+                  <span>Celebrities · Behance project</span>
+                </a>
                 {celebrityVideos.map((film, index) => (
                   <div className="practice-celebrity-film" role="listitem" key={film.playerUrl}>
                   <iframe
@@ -246,7 +258,7 @@ export default function Home() {
               ))}
             </ol>
 
-            <div className="practice-counter" aria-hidden="true"><span id="practice-step-number">01</span><i /><span>{String(celebrityVideos.length).padStart(2, "0")}</span></div>
+            <div className="practice-counter" aria-hidden="true"><span id="practice-step-number">01</span><i /><span>{String(celebrityVideos.length + 1).padStart(2, "0")}</span></div>
           </div>
         </section>
 
