@@ -88,6 +88,14 @@ or enforce explicit server-side membership or allowlist checks.
 Use SIWC for account pages, user-specific dashboards, saved records, and write
 actions tied to the current ChatGPT user. Leave public content anonymous.
 
+## Vercel Deployment
+
+Vercel uses the native Next.js build configured in `vercel.json`. Keep the
+project's Output Directory override disabled so Vercel can package the generated
+`.next` output automatically. Standalone output remains available for other
+hosting targets but is disabled on Vercel to avoid the Next.js 16.3 adapter
+compatibility issue.
+
 ## Diagnostic Commands
 
 - `npm run install:ci`: perform the one bounded lockfile install
